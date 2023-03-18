@@ -1,6 +1,6 @@
 <?php
 
-namespace Moaadian\Services;
+namespace Src\Services;
 
 use RuntimeException;
 

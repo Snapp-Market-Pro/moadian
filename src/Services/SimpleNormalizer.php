@@ -1,8 +1,8 @@
 <?php
 
-namespace Moaadian\Services;
+namespace Src\Services;
 
-use Moaadian\Constants\TransferConstants;
+use Src\Constants\TransferConstants;
 
 class SimpleNormalizer
 {

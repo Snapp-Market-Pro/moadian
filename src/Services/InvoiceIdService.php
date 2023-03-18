@@ -1,10 +1,10 @@
 <?php
 
-namespace Moaadian\Services;
+namespace Src\Services;
 
 use DateTime;
 
-class InvoiceIdService extends \Moaadian\Services\SignatureService
+class InvoiceIdService extends \Src\Services\SignatureService
 {
     private const CHARACTER_TO_NUMBER_CODING = [
         'A' => 65, 'B' => 66, 'C' => 67, 'D' => 68, 'E' => 69, 'F' => 70, 'G' => 71, 'H' => 72, 'I' => 73,

@@ -1,6 +1,6 @@
 <?php
 
-namespace Moaadian\Dto;
+namespace Src\Dto;
 
 class GetTokenDto extends PrimitiveDto implements PacketDataInterface
 {

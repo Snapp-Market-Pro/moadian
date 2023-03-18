@@ -1,6 +1,6 @@
 <?php
 
-namespace Moaadian\Constants;
+namespace Src\Constants;
 
 class TransferConstants
 {
