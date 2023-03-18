@@ -2,7 +2,7 @@
 
 namespace Src\Dto;
 
-class PaymentDto extends PrimitiveDto
+class InvoicePaymentDto extends PrimitiveDto
 {
 
     /**
@@ -28,17 +28,17 @@ class PaymentDto extends PrimitiveDto
     /**
      * payerCardNumber
      */
-    private string $pcn;
+    private ?string $pcn;
 
     /**
      * payerId
      */
-    private string $pid;
+    private ?string $pid;
 
     /**
      * payDateTime
      */
-    private int $pdt;
+    private ?int $pdt;
 
     public function getIinn(): string
     {
@@ -89,7 +89,7 @@ class PaymentDto extends PrimitiveDto
         return $this->pcn;
     }
 
-    public function setPcn(string $pcn): self
+    public function setPcn(?string $pcn): self
     {
         $this->pcn = $pcn;
         return $this;
@@ -100,7 +100,7 @@ class PaymentDto extends PrimitiveDto
         return $this->pid;
     }
 
-    public function setPid(string $pid): self
+    public function setPid(?string $pid): self
     {
         $this->pid = $pid;
         return $this;
@@ -111,7 +111,7 @@ class PaymentDto extends PrimitiveDto
         return $this->pdt;
     }
 
-    public function setPdt(int $pdt): self
+    public function setPdt(?int $pdt): self
     {
         $this->pdt = $pdt;
         return $this;

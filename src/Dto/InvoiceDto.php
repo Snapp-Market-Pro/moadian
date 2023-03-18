@@ -49,7 +49,7 @@ class InvoiceDto implements PacketDataInterface
     }
 
     /**
-     * @param PaymentDto[] $payments
+     * @param InvoicePaymentDto[] $payments
      */
     public function setPayments(array $payments): static
     {
