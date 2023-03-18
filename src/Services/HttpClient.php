@@ -51,7 +51,6 @@ class HttpClient
      */
     public function sendPackets(string $path, array $packets, array $headers, bool $encrypt = false, bool $sign = false)
     {
-        dd(333);
         $headers = $this->fillEssentialHeaders($headers);
         if ($sign) {
             foreach ($packets as $packet) {
