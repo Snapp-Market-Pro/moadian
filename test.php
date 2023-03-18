@@ -17,6 +17,12 @@ $publicKey = file_get_contents(__DIR__ . '/public.key');
 $signatureService = new SignatureService($privateKey, null);
 $encryptionService = new EncryptionService($publicKey, $orgKeyId);
 $invoiceIdService = new InvoiceIdService($username);
+
+$invoiceCreatedAtDatetime = new DateTime();
+$taxId = $invoiceIdService->generateInvoiceId($invoiceCreatedAtDatetime, 1);
+// Could be more accurate floor(microtime() * 1000)
+$indati2m = $invoiceCreatedAtDatetime->getTimestamp() * 1000;
+
 $myuuid = Uuid::uuid4();
 $myuuid = (string)$myuuid;
 
@@ -27,8 +33,8 @@ $packets = [
         "retry" => false,
         "data" => [
             "header" => [
-                "indati2m" => 1000000,
-                "indatim" => 1000000,
+                "indati2m" => $indati2m,
+                "indatim" => $indati2m,
                 "inty" => 1,
                 "ft" => null,
                 "inno" => 2,
@@ -43,7 +49,7 @@ $packets = [
                 "bpc" => null,
                 "dpvb" => null,
                 "tax17" => 0,
-                "taxid" => "",
+                "taxid" => $taxId,
                 "inp" => 1,
                 "scc" => null,
                 "ins" => 3,
