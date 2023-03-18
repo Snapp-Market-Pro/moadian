@@ -33,17 +33,17 @@ class InvoiceBodyDto extends PrimitiveDto
     /**
      * currencyFee
      */
-    private float $cfee;
+    private ?float $cfee;
 
     /**
      * currencyType
      */
-    private string $cut;
+    private ?string $cut;
 
     /**
      * exchangeRate
      */
-    private string $exr;
+    private ?string $exr;
 
     /**
      * preDiscount
@@ -73,57 +73,57 @@ class InvoiceBodyDto extends PrimitiveDto
     /**
      * overDutyTitle
      */
-    private string $odt;
+    private ?string $odt;
 
     /**
      * overDutyRate
      */
-    private float $odr;
+    private ?float $odr;
 
     /**
      * overDutyAmount
      */
-    private float $odam;
+    private ?float $odam;
 
     /**
      * otherLegalTitle
      */
-    private string $olt;
+    private ?string $olt;
 
     /**
      * otherLegalRate
      */
-    private float $olr;
+    private ?float $olr;
 
     /**
      * otherLegalAmount
      */
-    private float $olam;
+    private ?float $olam;
 
     /**
      * constructionFee
      */
-    private float $consfee;
+    private ?float $consfee;
 
     /**
      * sellerProfit
      */
-    private float $spro;
+    private ?float $spro;
 
     /**
      * brokerSalary
      */
-    private float $bros;
+    private ?float $bros;
 
     /**
      * totalConstructionProfitBrokerSalary
      */
-    private float $tcpbs;
+    private ?float $tcpbs;
 
     /**
      * cashOfPayment
      */
-    private float $cop;
+    private ?float $cop;
 
     /**
      * buyerSRegisterNumber
@@ -133,7 +133,7 @@ class InvoiceBodyDto extends PrimitiveDto
     /**
      * vatOfPayment
      */
-    private string $vop;
+    private ?string $vop;
 
     /**
      * totalServiceStuffAmount
@@ -200,7 +200,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->cfee;
     }
 
-    public function setCfee(float $cfee): self
+    public function setCfee(?float $cfee): self
     {
         $this->cfee = $cfee;
         return $this;
@@ -211,7 +211,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->cut;
     }
 
-    public function setCut(string $cut): self
+    public function setCut(?string $cut): self
     {
         $this->cut = $cut;
         return $this;
@@ -222,7 +222,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->exr;
     }
 
-    public function setExr(string $exr): self
+    public function setExr(?string $exr): self
     {
         $this->exr = $exr;
         return $this;
@@ -288,7 +288,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->odt;
     }
 
-    public function setOdt(string $odt): self
+    public function setOdt(?string $odt): self
     {
         $this->odt = $odt;
         return $this;
@@ -299,7 +299,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->odr;
     }
 
-    public function setOdr(float $odr): self
+    public function setOdr(?float $odr): self
     {
         $this->odr = $odr;
         return $this;
@@ -310,7 +310,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->odam;
     }
 
-    public function setOdam(float $odam): self
+    public function setOdam(?float $odam): self
     {
         $this->odam = $odam;
         return $this;
@@ -321,7 +321,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->olt;
     }
 
-    public function setOlt(string $olt): self
+    public function setOlt(?string $olt): self
     {
         $this->olt = $olt;
         return $this;
@@ -332,7 +332,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->olr;
     }
 
-    public function setOlr(float $olr): self
+    public function setOlr(?float $olr): self
     {
         $this->olr = $olr;
         return $this;
@@ -343,7 +343,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->olam;
     }
 
-    public function setOlam(float $olam): self
+    public function setOlam(?float $olam): self
     {
         $this->olam = $olam;
         return $this;
@@ -354,7 +354,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->consfee;
     }
 
-    public function setConsfee(float $consfee): self
+    public function setConsfee(?float $consfee): self
     {
         $this->consfee = $consfee;
         return $this;
@@ -365,7 +365,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->spro;
     }
 
-    public function setSpro(float $spro): self
+    public function setSpro(?float $spro): self
     {
         $this->spro = $spro;
         return $this;
@@ -376,7 +376,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->bros;
     }
 
-    public function setBros(float $bros): self
+    public function setBros(?float $bros): self
     {
         $this->bros = $bros;
         return $this;
@@ -387,7 +387,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->tcpbs;
     }
 
-    public function setTcpbs(float $tcpbs): self
+    public function setTcpbs(?float $tcpbs): self
     {
         $this->tcpbs = $tcpbs;
         return $this;
@@ -398,7 +398,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->cop;
     }
 
-    public function setCop(float $cop): self
+    public function setCop(?float $cop): self
     {
         $this->cop = $cop;
         return $this;
@@ -420,7 +420,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->vop;
     }
 
-    public function setVop(string $vop): self
+    public function setVop(?string $vop): self
     {
         $this->vop = $vop;
         return $this;

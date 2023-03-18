@@ -28,7 +28,6 @@ class HttpClient
     public function sendPacket(string $path, Packet $packet, array $headers)
     {
         $normalizedData = Normalizer::normalizeArray(array_merge($packet->toArray(), $headers));
-
         $signature = $this->signatureService->sign($normalizedData);
 
         $content = [
