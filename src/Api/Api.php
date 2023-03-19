@@ -1,19 +1,15 @@
 <?php
 
-namespace Src\Api;
+namespace SnappMarketPro\Moadian\Api;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Src\Constants\PacketType;
-use Src\Constants\TransferConstants;
-use Src\Dto\GetTokenDto;
-use Src\Dto\InvoiceDto;
-use Src\Dto\Packet;
-use Src\Dto\Token;
-use Src\Services\HttpClient;
-use Src\Services\Normalizer;
-use Src\Services\SignatureService;
 use Ramsey\Uuid\Uuid;
-use Ulid\Ulid;
+use SnappMarketPro\Moadian\Constants\PacketType;
+use SnappMarketPro\Moadian\Constants\TransferConstants;
+use SnappMarketPro\Moadian\Dto\GetTokenDto;
+use SnappMarketPro\Moadian\Dto\Packet;
+use SnappMarketPro\Moadian\Dto\Token;
+use SnappMarketPro\Moadian\Services\HttpClient;
 
 class Api
 {
@@ -22,8 +18,7 @@ class Api
     public function __construct(
         private string $username,
         private HttpClient $httpClient,
-    )
-    {
+    ) {
     }
 
     /**

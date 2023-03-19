@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Constants;
+namespace SnappMarketPro\Moadian\Constants;
 
 class TransferConstants
 {
