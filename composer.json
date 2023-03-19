@@ -1,14 +1,9 @@
 {
-  "name": "smp/moadian",
+  "name": "snapp-market-pro/moadian",
   "type": "library",
   "autoload": {
     "psr-4": {
-      "Src\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests/"
+      "SnappMarketPro\\Moadian\\": "src/"
     }
   },
   "authors": [

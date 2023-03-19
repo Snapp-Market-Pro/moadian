@@ -1,13 +1,12 @@
 <?php
 
-namespace Src\Services;
+namespace SnappMarketPro\Moadian\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Src\Constants\TransferConstants;
-use Src\Dto\Packet;
+use SnappMarketPro\Moadian\Constants\TransferConstants;
+use SnappMarketPro\Moadian\Dto\Packet;
 use Psr\Http\Message\ResponseInterface;
-use Ulid\Ulid;
 
 class HttpClient
 {

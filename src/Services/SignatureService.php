@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Services;
+namespace SnappMarketPro\Moadian\Services;
 
 use RuntimeException;
 
