@@ -9,7 +9,7 @@ class InvoiceDto implements PacketDataInterface
     /** @var InvoiceBodyDto[] */
     private array $body;
 
-    /** @var PaymentDto[] */
+    /** @var InvoicePaymentDto[] */
     private array $payments;
 
     public function getHeader(): InvoiceHeaderDto
@@ -41,7 +41,7 @@ class InvoiceDto implements PacketDataInterface
     }
 
     /**
-     * @return PaymentDto[]
+     * @return InvoicePaymentDto[]
      */
     public function getPayments(): array
     {
@@ -49,7 +49,7 @@ class InvoiceDto implements PacketDataInterface
     }
 
     /**
-     * @param PaymentDto[] $payments
+     * @param InvoicePaymentDto[] $payments
      */
     public function setPayments(array $payments): static
     {
@@ -67,14 +67,9 @@ class InvoiceDto implements PacketDataInterface
     {
         return [
             'header' => $this->getHeader()->toArray(),
-            'body' => array_map(fn (InvoiceBodyDto $body) => $body->toArray(), $this->getBody()),
-            'payments' => array_map(fn (PaymentDto $payment) => $payment->toArray(), $this->getPayments()),
-            'extension' => [
-                [
-                    'key' => null,
-                    'value' => null,
-                ]
-            ]
+            'body' => array_map(fn(InvoiceBodyDto $body) => $body->toArray(), $this->getBody()),
+            'payments' => array_map(fn(InvoicePaymentDto $payment) => $payment->toArray(), $this->getPayments()),
+            'extension' => null
         ];
     }
 }

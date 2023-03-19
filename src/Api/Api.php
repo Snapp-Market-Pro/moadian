@@ -33,6 +33,7 @@ class Api
     {
         $packet = new Packet(PacketType::GET_TOKEN, new GetTokenDto($this->username));
 
+        $packet->setRetry(false);
         $packet->setFiscalId($this->username);
 
         $headers = $this->getEssentialHeaders();

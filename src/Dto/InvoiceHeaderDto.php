@@ -23,22 +23,22 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * flightType
      */
-    private int $ft;
+    private ?int $ft;
 
     /**
      * invoiceNumber
      */
-    private string $inno;
+    private int $inno;
 
     /**
      * invoiceReferenceTaxId
      */
-    private string $irtaxid;
+    private ?string $irtaxid;
 
     /**
      * sellerCustomsLicenceNumber
      */
-    private int $scln;
+    private ?int $scln;
 
     /**
      * settlementType
@@ -58,7 +58,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * buyerId
      */
-    private string $bid;
+    private ?string $bid;
 
     /**
      * installmentPayment
@@ -73,12 +73,12 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * buyerPostalCode
      */
-    private string $bpc;
+    private ?string $bpc;
 
     /**
      * buyerVatPaymentStatus
      */
-//    private int $dpvb;
+    private ?int $dpvb;
 
     /**
      * tax17
@@ -98,7 +98,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * sellerCustomsCode
      */
-    private string $scc;
+    private ?string $scc;
 
     /**
      * invoiceSubject
@@ -108,7 +108,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * billingId
      */
-    private string $billid;
+    private ?string $billid;
 
     /**
      * totalPreDiscount
@@ -123,7 +123,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * totalAfterDiscount
      */
-    private float $tadis;
+    private ?float $tadis;
 
     /**
      * totalVatAmount
@@ -143,32 +143,32 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * typeOfBuyer
      */
-    private int $tob;
+    private ?int $tob;
 
     /**
      * buyerTaxIdentificationNumber
      */
-    private string $tinb;
+    private ?string $tinb;
 
     /**
      * sellerBranchCode
      */
-    private string $sbc;
+    private ?string $sbc;
 
     /**
      * buyerBranchCode
      */
-    private string $bbc;
+    private ?string $bbc;
 
     /**
      * buyerPassportNumber
      */
-    private string $bpn;
+    private ?string $bpn;
 
     /**
      * contractRegistrationNumber
      */
-    private int $crn;
+    private ?int $crn;
 
     public function getIndati2m(): int
     {
@@ -208,7 +208,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->ft;
     }
 
-    public function setFt(int $ft): InvoiceHeaderDto
+    public function setFt(?int $ft): InvoiceHeaderDto
     {
         $this->ft = $ft;
         return $this;
@@ -219,7 +219,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->inno;
     }
 
-    public function setInno(string $inno): InvoiceHeaderDto
+    public function setInno(int $inno): InvoiceHeaderDto
     {
         $this->inno = $inno;
         return $this;
@@ -230,7 +230,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->irtaxid;
     }
 
-    public function setIrtaxid(string $irtaxid): InvoiceHeaderDto
+    public function setIrtaxid(?string $irtaxid): InvoiceHeaderDto
     {
         $this->irtaxid = $irtaxid;
         return $this;
@@ -241,7 +241,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->scln;
     }
 
-    public function setScln(int $scln): InvoiceHeaderDto
+    public function setScln(?int $scln): InvoiceHeaderDto
     {
         $this->scln = $scln;
         return $this;
@@ -285,7 +285,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->bid;
     }
 
-    public function setBid(string $bid): InvoiceHeaderDto
+    public function setBid(?string $bid): InvoiceHeaderDto
     {
         $this->bid = $bid;
         return $this;
@@ -318,7 +318,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->bpc;
     }
 
-    public function setBpc(string $bpc): InvoiceHeaderDto
+    public function setBpc(?string $bpc): InvoiceHeaderDto
     {
         $this->bpc = $bpc;
         return $this;
@@ -329,7 +329,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->dpvb;
     }
 
-    public function setDpvb(int $dpvb): InvoiceHeaderDto
+    public function setDpvb(?int $dpvb): InvoiceHeaderDto
     {
         $this->dpvb = $dpvb;
         return $this;
@@ -373,7 +373,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->scc;
     }
 
-    public function setScc(string $scc): InvoiceHeaderDto
+    public function setScc(?string $scc): InvoiceHeaderDto
     {
         $this->scc = $scc;
         return $this;
@@ -395,7 +395,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->billid;
     }
 
-    public function setBillid(string $billid): InvoiceHeaderDto
+    public function setBillid(?string $billid): InvoiceHeaderDto
     {
         $this->billid = $billid;
         return $this;
@@ -428,7 +428,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->tadis;
     }
 
-    public function setTadis(float $tadis): InvoiceHeaderDto
+    public function setTadis(?float $tadis): InvoiceHeaderDto
     {
         $this->tadis = $tadis;
         return $this;
@@ -472,7 +472,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->tob;
     }
 
-    public function setTob(int $tob): InvoiceHeaderDto
+    public function setTob(?int $tob): InvoiceHeaderDto
     {
         $this->tob = $tob;
         return $this;
@@ -483,7 +483,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->tinb;
     }
 
-    public function setTinb(string $tinb): InvoiceHeaderDto
+    public function setTinb(?string $tinb): InvoiceHeaderDto
     {
         $this->tinb = $tinb;
         return $this;
@@ -494,7 +494,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->sbc;
     }
 
-    public function setSbc(string $sbc): InvoiceHeaderDto
+    public function setSbc(?string $sbc): InvoiceHeaderDto
     {
         $this->sbc = $sbc;
         return $this;
@@ -505,7 +505,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->bbc;
     }
 
-    public function setBbc(string $bbc): InvoiceHeaderDto
+    public function setBbc(?string $bbc): InvoiceHeaderDto
     {
         $this->bbc = $bbc;
         return $this;
@@ -516,7 +516,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->bpn;
     }
 
-    public function setBpn(string $bpn): InvoiceHeaderDto
+    public function setBpn(?string $bpn): InvoiceHeaderDto
     {
         $this->bpn = $bpn;
         return $this;
@@ -527,7 +527,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->crn;
     }
 
-    public function setCrn(int $crn): InvoiceHeaderDto
+    public function setCrn(?int $crn): InvoiceHeaderDto
     {
         $this->crn = $crn;
         return $this;

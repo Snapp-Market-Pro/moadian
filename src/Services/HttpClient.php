@@ -28,7 +28,6 @@ class HttpClient
     public function sendPacket(string $path, Packet $packet, array $headers)
     {
         $normalizedData = Normalizer::normalizeArray(array_merge($packet->toArray(), $headers));
-
         $signature = $this->signatureService->sign($normalizedData);
 
         $content = [
@@ -53,6 +52,9 @@ class HttpClient
     public function sendPackets(string $path, array $packets, array $headers, bool $encrypt = false, bool $sign = false)
     {
         $headers = $this->fillEssentialHeaders($headers);
+
+        // TODO: Wrong value for indati2m and indati2m, taxId
+
         if ($sign) {
             foreach ($packets as $packet) {
                 $this->signPacket($packet);
@@ -63,26 +65,30 @@ class HttpClient
             $packets = $this->encryptPackets($packets);
         }
 
-        $normalized = Normalizer::normalizeArray([
-                ...array_map(fn($a) => $a->toArray(), $packets),
-                ...$headers
-            ]
+        $cloneHeader = $headers;
+        $cloneHeader['Authorization'] = str_replace('Bearer ', '', $cloneHeader['Authorization']);
+
+        $normalized = Normalizer::normalizeArray(
+            array_merge(
+                ['packets' => [$packets[0]->toArray()]],
+                $cloneHeader
+            )
         );
 
         $signature = $this->signatureService->sign($normalized);
 
-        if (isset($headers[TransferConstants::AUTHORIZATION_HEADER])) {
+        /*if (isset($headers[TransferConstants::AUTHORIZATION_HEADER])) {
             $headers[TransferConstants::AUTHORIZATION_HEADER] = 'Bearer ' . $headers[TransferConstants::AUTHORIZATION_HEADER];
-        }
+        }*/
+
         $content = [
             'packets' => array_map(fn($p) => $p->toArray(), $packets),
             'signature' => $signature,
+            'signatureKeyId' => null,
         ];
 
-        if ($this->signatureService->getKeyId() !== null) {
-            $content['signatureKeyId'] = $this->signatureService->getKeyId();
-        }
-        return $this->post($path, json_encode($content), $headers);
+
+        return $this->post($path, json_encode($content), [...$headers, 'Content-Type' => 'application/json']);
     }
 
     private function signPacket(Packet $packet): void
@@ -91,7 +97,8 @@ class HttpClient
         $signature = $this->signatureService->sign($normalized);
 
         $packet->setDataSignature($signature);
-        $packet->setSignatureKeyId($this->signatureService->getKeyId());
+        // TODO: Not sure?
+//        $packet->setSignatureKeyId($this->signatureService->getKeyId());
     }
 
     /**
@@ -100,15 +107,15 @@ class HttpClient
      */
     private function encryptPackets(array $packets): array
     {
-        $aesKey = bin2hex(random_bytes(32));
-        $encryptedAesKey = $this->encryptionService->encryptAesKey($aesKey);
+        $aesHex = bin2hex(random_bytes(32));
         $iv = bin2hex(random_bytes(16));
+        $encryptedAesKey = $this->encryptionService->encryptAesKey($aesHex);
 
         foreach ($packets as $packet) {
             $packet->setIv($iv);
             $packet->setSymmetricKey($encryptedAesKey);
             $packet->setEncryptionKeyId($this->encryptionService->getEncryptionKeyId());
-            $packet->setData($this->encryptionService->encrypt(json_encode($packet->getData()->toArray()), $aesKey, $iv, 16));
+            $packet->setData($this->encryptionService->encrypt(json_encode($packet->getData()->toArray()), hex2bin($aesHex), hex2bin($iv)));
         }
 
         return $packets;

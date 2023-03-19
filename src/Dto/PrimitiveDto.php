@@ -2,7 +2,7 @@
 
 namespace Src\Dto;
 
-abstract class PrimitiveDto
+abstract class PrimitiveDto implements PacketDataInterface
 {
     public function toArray(): array
     {
@@ -10,14 +10,15 @@ abstract class PrimitiveDto
 
         $properties = $reflection->getProperties();
 
-        $array = [];
-
         foreach ($properties as $property) {
             if ($property->isInitialized($this)) {
-                $array[$property->getName()] = (string) $property->getValue($this);
+                $value = $property->getValue($this);
+                $value = $property->getValue($this) instanceof PacketDataInterface ?
+                    $property->getValue($this)->toArray() : $value;
+
+                $array[$property->getName()] = $value;
             }
         }
-
         return $array;
     }
 }
