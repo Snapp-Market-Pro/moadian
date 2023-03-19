@@ -2,7 +2,7 @@
 
 namespace Src\Dto;
 
-use Ulid\Ulid;
+use Ramsey\Uuid\Uuid;
 
 class Packet
 {
@@ -32,7 +32,7 @@ class Packet
     ) {
         $this->packetType = $packetType;
         $this->data = $data;
-        $this->uid = (string) Ulid::generate();
+        $this->uid = (string) Uuid::uuid4();
     }
 
     public function getUid(): string
