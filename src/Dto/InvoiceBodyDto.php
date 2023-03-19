@@ -18,7 +18,7 @@ class InvoiceBodyDto extends PrimitiveDto
     /**
      * measurementUnit
      */
-    private string $mu;
+    private int $mu;
 
     /**
      * amount
@@ -167,7 +167,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->mu;
     }
 
-    public function setMu(string $mu): self
+    public function setMu(int $mu): self
     {
         $this->mu = $mu;
         return $this;

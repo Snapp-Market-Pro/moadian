@@ -65,11 +65,13 @@ class HttpClient
             $packets = $this->encryptPackets($packets);
         }
 
+        $cloneHeader = $headers;
+        $cloneHeader['Authorization'] = str_replace('Bearer ', '', $cloneHeader['Authorization']);
 
         $normalized = Normalizer::normalizeArray(
             array_merge(
                 ['packets' => [$packets[0]->toArray()]],
-                $headers
+                $cloneHeader
             )
         );
 
@@ -84,10 +86,6 @@ class HttpClient
             'signature' => $signature,
             'signatureKeyId' => null,
         ];
-
-        /*if ($this->signatureService->getKeyId() !== null) {
-            $content['signatureKeyId'] = $this->signatureService->getKeyId();
-        }*/
 
 
         return $this->post($path, json_encode($content), [...$headers, 'Content-Type' => 'application/json']);
@@ -109,13 +107,9 @@ class HttpClient
      */
     private function encryptPackets(array $packets): array
     {
-//        $aesKey = bin2hex(random_bytes(32));
-//        $encryptedAesKey = $this->encryptionService->encryptAesKey($aesKey);
-        $encryptedAesKey = "Ys3AxsZ2fib6JG1Qv9T0wE5W6a2ujo5NNSk9x5gFBZe2EXzWpjPuCuZ75ovRLuyFpeSTHBWaL16M82U8qx3p8XKYnMKdbktI+YPQXf4fTi4NdoEsXUijxa6JDJtDOMOuB5t1DWw0DvtW2scBbeA6luzYsu8fxrDrrojq5RdniDChwJtFuwpd8LDlfUhB8VWMGT242QLHI0kBWylXGd0a6JSv/V8W8DfuWCPixdD+1wLdd15fzlmKSM2+n4cpR4zCIgfrybYPWDirt3ZhO9NV5YFtNzePSLuYHDxtVqoTHKiP5yRY94gul/cmDBxz/guxpbvc6lgKBGgOl4qughqx6g==";
-//        $iv = bin2hex(random_bytes(16));
-        $iv = '4fda3c622e966e0839441401bbd3b8f191d4267bf5f19b40812a34b212fd3ed9';
-        $aesHex = '4fda3c622e966e0839441401bbd3b8f191d4267bf5f19b40812a34b212fd3ed9';
-
+        $aesHex = bin2hex(random_bytes(32));
+        $iv = bin2hex(random_bytes(16));
+        $encryptedAesKey = $this->encryptionService->encryptAesKey($aesHex);
 
         foreach ($packets as $packet) {
             $packet->setIv($iv);

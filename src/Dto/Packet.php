@@ -14,15 +14,15 @@ class Packet
 
     private PacketDataInterface|string|null $data;
 
-    private string $encryptionKeyId = '';
+    private ?string $encryptionKeyId = '';
 
-    private string $symmetricKey = '';
+    private ?string $symmetricKey = '';
 
-    private string $iv = '';
+    private ?string $iv = '';
 
     private string $fiscalId = '';
 
-    private string $dataSignature = '';
+    private ?string $dataSignature = '';
 
     private string|null $signatureKeyId = null;
 
@@ -84,7 +84,7 @@ class Packet
         return $this->encryptionKeyId;
     }
 
-    public function setEncryptionKeyId(string $encryptionKeyId): self
+    public function setEncryptionKeyId(?string $encryptionKeyId): self
     {
         $this->encryptionKeyId = $encryptionKeyId;
         return $this;
@@ -95,7 +95,7 @@ class Packet
         return $this->symmetricKey;
     }
 
-    public function setSymmetricKey(string $symmetricKey): self
+    public function setSymmetricKey(?string $symmetricKey): self
     {
         $this->symmetricKey = $symmetricKey;
         return $this;
@@ -106,7 +106,7 @@ class Packet
         return $this->iv;
     }
 
-    public function setIv(string $iv): self
+    public function setIv(?string $iv): self
     {
         $this->iv = $iv;
         return $this;
@@ -128,7 +128,7 @@ class Packet
         return $this->dataSignature;
     }
 
-    public function setDataSignature(string $dataSignature): self
+    public function setDataSignature(?string $dataSignature): self
     {
         $this->dataSignature = $dataSignature;
         return $this;

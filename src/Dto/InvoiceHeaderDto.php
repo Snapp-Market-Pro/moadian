@@ -28,7 +28,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * invoiceNumber
      */
-    private string $inno;
+    private int $inno;
 
     /**
      * invoiceReferenceTaxId
@@ -219,7 +219,7 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->inno;
     }
 
-    public function setInno(string $inno): InvoiceHeaderDto
+    public function setInno(int $inno): InvoiceHeaderDto
     {
         $this->inno = $inno;
         return $this;
