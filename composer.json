@@ -24,8 +24,7 @@
     "php": "^8.0",
     "ext-openssl": "*",
     "guzzlehttp/guzzle": "^7.5",
-    "ramsey/uuid": "^4.7",
-    "robinvdvleuten/ulid": "^5.0"
+    "ramsey/uuid": "^4.7"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0",
