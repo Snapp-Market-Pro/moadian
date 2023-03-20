@@ -8,7 +8,7 @@ class InvoiceBodyDto extends PrimitiveDto
     /**
      * service Stuff Id
      */
-    private string $sstid;
+    private ?string $sstid;
 
     /**
      * serviceStuffTitle
@@ -145,13 +145,13 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this->sstid;
     }
 
-    public function setSstid(string $sstid): self
+    public function setSstid(?string $sstid): self
     {
         $this->sstid = $sstid;
         return $this;
     }
 
-    public function getSstt(): string
+    public function getSstt(): ?string
     {
         return $this->sstt;
     }

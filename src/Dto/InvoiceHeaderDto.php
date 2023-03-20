@@ -48,7 +48,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * sellerTaxIdentificationNumber
      */
-    private string $tins;
+    private ?string $tins;
 
     /**
      * cashPayment
@@ -133,7 +133,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * totalOtherDutyAmount
      */
-    private float $todam;
+    private ?float $todam;
 
     /**
      * totalBill
@@ -258,12 +258,12 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this;
     }
 
-    public function getTins(): string
+    public function getTins(): ?string
     {
         return $this->tins;
     }
 
-    public function setTins(string $tins): InvoiceHeaderDto
+    public function setTins(?string $tins): InvoiceHeaderDto
     {
         $this->tins = $tins;
         return $this;
@@ -445,12 +445,12 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this;
     }
 
-    public function getTodam(): float
+    public function getTodam(): ?float
     {
         return $this->todam;
     }
 
-    public function setTodam(float $todam): InvoiceHeaderDto
+    public function setTodam(?float $todam): InvoiceHeaderDto
     {
         $this->todam = $todam;
         return $this;
