@@ -8,22 +8,22 @@ class InvoicePaymentDto extends PrimitiveDto
     /**
      * IinNumber
      */
-    private string $iinn;
+    private ?string $iinn;
 
     /**
      * acceptorNumber
      */
-    private string $acn;
+    private ?string $acn;
 
     /**
      * terminalNumber
      */
-    private string $trmn;
+    private ?string $trmn;
 
     /**
      * trackingNumber
      */
-    private string $trn;
+    private ?string $trn;
 
     /**
      * payerCardNumber
@@ -40,51 +40,51 @@ class InvoicePaymentDto extends PrimitiveDto
      */
     private ?int $pdt;
 
-    public function getIinn(): string
+    public function getIinn(): ?string
     {
         return $this->iinn;
     }
 
-    public function setIinn(string $iinn): self
+    public function setIinn(?string $iinn): self
     {
         $this->iinn = $iinn;
         return $this;
     }
 
-    public function getAcn(): string
+    public function getAcn(): ?string
     {
         return $this->acn;
     }
 
-    public function setAcn(string $acn): self
+    public function setAcn(?string $acn): self
     {
         $this->acn = $acn;
         return $this;
     }
 
-    public function getTrmn(): string
+    public function getTrmn(): ?string
     {
         return $this->trmn;
     }
 
-    public function setTrmn(string $trmn): self
+    public function setTrmn(?string $trmn): self
     {
         $this->trmn = $trmn;
         return $this;
     }
 
-    public function getTrn(): string
+    public function getTrn(): ?string
     {
         return $this->trn;
     }
 
-    public function setTrn(string $trn): self
+    public function setTrn(?string $trn): self
     {
         $this->trn = $trn;
         return $this;
     }
 
-    public function getPcn(): string
+    public function getPcn(): ?string
     {
         return $this->pcn;
     }
@@ -95,7 +95,7 @@ class InvoicePaymentDto extends PrimitiveDto
         return $this;
     }
 
-    public function getPid(): string
+    public function getPid(): ?string
     {
         return $this->pid;
     }
@@ -106,7 +106,7 @@ class InvoicePaymentDto extends PrimitiveDto
         return $this;
     }
 
-    public function getPdt(): int
+    public function getPdt(): ?int
     {
         return $this->pdt;
     }
