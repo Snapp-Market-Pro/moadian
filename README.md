@@ -22,6 +22,7 @@ use SnappMarketPro\Moadian\Dto\InvoiceHeaderDto;
 use SnappMarketPro\Moadian\Dto\InvoicePaymentDto;
 use SnappMarketPro\Moadian\Dto\Packet;
 use SnappMarketPro\Moadian\Moadian;
+use Datetime;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -29,6 +30,15 @@ $username = 'شناسه یکتای مالیاتی';
 $orgKeyId = '6a2bcd88-a871-4245-a393-2843eafe6e02';
 $privateKey = file_get_contents(__DIR__ . '/private.key');
 $publicKey = file_get_contents(__DIR__ . '/public.key');
+
+$moadian = new Moadian(
+    $publicKey,
+    $privateKey,
+    $orgKeyId,
+    $username
+);
+
+$taxId = $moadian->generateTaxId(new DateTime(), 1)
 
 $invoiceHeaderDto = new InvoiceHeaderDto();
 $invoiceHeaderDto->setIndati2m(1000000);
@@ -47,7 +57,7 @@ $invoiceHeaderDto->setTvop(0);
 $invoiceHeaderDto->setBpc(null);
 $invoiceHeaderDto->setDpvb(null);
 $invoiceHeaderDto->setTax17(0);
-$invoiceHeaderDto->setTaxid($username);
+$invoiceHeaderDto->setTaxid($taxId);
 $invoiceHeaderDto->setInp(1);
 $invoiceHeaderDto->setScc(null);
 $invoiceHeaderDto->setIns(3);
@@ -116,12 +126,6 @@ $packet->setEncryptionKeyId(null);
 $packet->setIv(null);
 $packet->setSymmetricKey(null);
 
-$moadian = new Moadian(
-    $publicKey,
-    $privateKey,
-    $orgKeyId,
-    $username
-);
 
 $token = $moadian->getToken();
 

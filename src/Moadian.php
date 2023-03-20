@@ -2,12 +2,14 @@
 
 namespace SnappMarketPro\Moadian;
 
+use DateTime;
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use SnappMarketPro\Moadian\Api\Api;
 use SnappMarketPro\Moadian\Dto\Packet;
 use SnappMarketPro\Moadian\Services\EncryptionService;
 use SnappMarketPro\Moadian\Services\HttpClient;
+use SnappMarketPro\Moadian\Services\InvoiceIdService;
 use SnappMarketPro\Moadian\Services\SignatureService;
 
 class Moadian
@@ -64,5 +66,12 @@ class Moadian
         $api = new Api($this->username, $httpClient);
 
         return $api->getToken();
+    }
+
+    public function generateTaxId(DateTime $invoiceCreatedAt, $internalInvoiceId): string
+    {
+        $invoiceIdService = new InvoiceIdService($this->username);
+
+        return $invoiceIdService->generateInvoiceId($invoiceCreatedAt, $internalInvoiceId);
     }
 }
