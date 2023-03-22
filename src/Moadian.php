@@ -6,7 +6,11 @@ use DateTime;
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use SnappMarketPro\Moadian\Api\Api;
+use SnappMarketPro\Moadian\Constants\PacketType;
+use SnappMarketPro\Moadian\Constants\TransferConstants;
+use SnappMarketPro\Moadian\Dto\InquiryByReferenceNumberDto;
 use SnappMarketPro\Moadian\Dto\Packet;
+use SnappMarketPro\Moadian\Dto\Token;
 use SnappMarketPro\Moadian\Services\EncryptionService;
 use SnappMarketPro\Moadian\Services\HttpClient;
 use SnappMarketPro\Moadian\Services\InvoiceIdService;
@@ -35,13 +39,13 @@ class Moadian
 
     public function sendInvoice(Packet $packet)
     {
-        if (! $this->token) {
+        if (!$this->token) {
             throw new InvalidArgumentException("Set token before sending invoice!");
         }
 
         $headers = [
-            'Authorization' => 'Bearer ' . $this->token,
-            'requestTraceId' => (string) Uuid::uuid4(),
+            'Authorization' => 'Bearer ' . $this->token->getToken(),
+            'requestTraceId' => (string)Uuid::uuid4(),
             'timestamp' => time() * 1000,
         ];
 
@@ -73,5 +77,15 @@ class Moadian
         $invoiceIdService = new InvoiceIdService($this->username);
 
         return $invoiceIdService->generateInvoiceId($invoiceCreatedAt, $internalInvoiceId);
+    }
+
+    public function inquiryByReferenceNumber(string $referenceNumber)
+    {
+        $signatureService = new SignatureService($this->privateKey);
+        $encryptionService = new EncryptionService($this->orgKeyId, null);
+        $httpClient = new HttpClient($this->baseURL, $signatureService, $encryptionService);
+        $api = new Api($this->username, $httpClient);
+        $api->setToken($this->token);
+        return $api->inquiryByReferenceNumber($referenceNumber);
     }
 }

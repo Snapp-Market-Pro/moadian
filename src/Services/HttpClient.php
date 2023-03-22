@@ -26,7 +26,13 @@ class HttpClient
 
     public function sendPacket(string $path, Packet $packet, array $headers)
     {
-        $normalizedData = Normalizer::normalizeArray(array_merge($packet->toArray(), $headers));
+        $cloneHeader = $headers;
+
+        if (!empty($cloneHeader['Authorization'])) {
+            $cloneHeader['Authorization'] = str_replace('Bearer ', '', $cloneHeader['Authorization']);
+        }
+
+        $normalizedData = Normalizer::normalizeArray(array_merge($packet->toArray(), $cloneHeader));
         $signature = $this->signatureService->sign($normalizedData);
 
         $content = [
