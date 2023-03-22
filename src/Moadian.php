@@ -30,7 +30,7 @@ class Moadian
     {
     }
 
-    public function setToken(string $token): self
+    public function setToken(Token $token): self
     {
         $this->token = $token;
 
