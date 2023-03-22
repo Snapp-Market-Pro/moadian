@@ -39,12 +39,6 @@ class HttpClient
             'packet' => $packet->toArray(),
             'signature' => $signature,
         ];
-
-        if (isset($headers[TransferConstants::AUTHORIZATION_HEADER])) {
-            $headers[TransferConstants::AUTHORIZATION_HEADER] = 'Bearer ' . $headers[TransferConstants::AUTHORIZATION_HEADER];
-//            dd($content, $headers);
-        }
-
         $response = $this->post($path, json_encode($content), $headers);
 
         return json_decode($response->getBody()->getContents(), true);
