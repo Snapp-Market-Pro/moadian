@@ -6,37 +6,37 @@ class InvoicePaymentDto extends PrimitiveDto
 {
 
     /**
-     * IinNumber
+     * Iin number
      */
     private ?string $iinn;
 
     /**
-     * acceptorNumber
+     * acceptor number
      */
     private ?string $acn;
 
     /**
-     * terminalNumber
+     * terminal number
      */
     private ?string $trmn;
 
     /**
-     * trackingNumber
+     * tracking number
      */
     private ?string $trn;
 
     /**
-     * payerCardNumber
+     * payer card number
      */
     private ?string $pcn;
 
     /**
-     * payerId
+     * payer ID
      */
     private ?string $pid;
 
     /**
-     * payDateTime
+     * payment DateTime
      */
     private ?int $pdt;
 

@@ -4,180 +4,174 @@ namespace SnappMarketPro\Moadian\Dto;
 
 class InvoiceHeaderDto extends PrimitiveDto
 {
-
     /**
-     * invoiceDateTimeGregorian
-     */
-    private int $indati2m;
-
-    /**
-     * invoiceDateTime
-     */
-    private int $indatim;
-
-    /**
-     * invoiceType
-     */
-    private int $inty;
-
-    /**
-     * flightType
-     */
-    private ?int $ft;
-
-    /**
-     * invoiceNumber
-     */
-    private int $inno;
-
-    /**
-     * invoiceReferenceTaxId
-     */
-    private ?string $irtaxid;
-
-    /**
-     * sellerCustomsLicenceNumber
-     */
-    private ?int $scln;
-
-    /**
-     * settlementType
-     */
-    private int $setm;
-
-    /**
-     * sellerTaxIdentificationNumber
-     */
-    private ?string $tins;
-
-    /**
-     * cashPayment
-     */
-    private float $cap;
-
-    /**
-     * buyerId
-     */
-    private ?string $bid;
-
-    /**
-     * installmentPayment
-     */
-    private float $insp;
-
-    /**
-     * totalVatOfPayment
-     */
-    private float $tvop;
-
-    /**
-     * buyerPostalCode
-     */
-    private ?string $bpc;
-
-    /**
-     * buyerVatPaymentStatus
-     */
-    private ?int $dpvb;
-
-    /**
-     * tax17
-     */
-    private float $tax17;
-
-    /**
-     * taxId
+     * unique tax ID (should be generated using InvoiceIdService)
      */
     private string $taxid;
 
     /**
-     * invoicePattern
+     * invoice timestamp (milliseconds from epoch)
+     */
+    private int $indatim;
+
+    /**
+     * invoice creation timestamp (milliseconds from epoch)
+     */
+    private int $indati2m;
+
+    /**
+     * invoice type
+     */
+    private int $inty;
+
+    /**
+     * internal invoice number
+     */
+    private ?string $inno = null;
+
+    /**
+     * invoice reference tax ID
+     */
+    private ?string $irtaxid;
+
+    /**
+     * invoice pattern
      */
     private int $inp;
 
     /**
-     * sellerCustomsCode
-     */
-    private ?string $scc;
-
-    /**
-     * invoiceSubject
+     * invoice subject
      */
     private int $ins;
 
     /**
-     * billingId
+     * seller tax identification number
      */
-    private ?string $billid;
+    private string $tins;
 
     /**
-     * totalPreDiscount
-     */
-    private float $tprdis;
-
-    /**
-     * totalDiscount
-     */
-    private float $tdis;
-
-    /**
-     * totalAfterDiscount
-     */
-    private ?float $tadis;
-
-    /**
-     * totalVatAmount
-     */
-    private float $tvam;
-
-    /**
-     * totalOtherDutyAmount
-     */
-    private ?float $todam;
-
-    /**
-     * totalBill
-     */
-    private float $tbill;
-
-    /**
-     * typeOfBuyer
+     * type of buyer
      */
     private ?int $tob;
 
     /**
-     * buyerTaxIdentificationNumber
+     * buyer ID
+     */
+    private ?string $bid;
+
+    /**
+     * buyer tax identification number
      */
     private ?string $tinb;
 
     /**
-     * sellerBranchCode
+     * seller branch code
      */
     private ?string $sbc;
 
     /**
-     * buyerBranchCode
+     * buyer postal code
+     */
+    private ?string $bpc;
+
+    /**
+     * buyer branch code
      */
     private ?string $bbc;
 
     /**
-     * buyerPassportNumber
+     * flight type
+     */
+    private ?int $ft;
+
+    /**
+     * buyer passport number
      */
     private ?string $bpn;
 
     /**
-     * contractRegistrationNumber
+     * seller customs licence number
+     */
+    private ?int $scln;
+
+    /**
+     * seller customs code
+     */
+    private ?string $scc;
+
+    /**
+     * contract registration number
      */
     private ?int $crn;
 
-    public function getIndati2m(): int
+    /**
+     * billing ID
+     */
+    private ?string $billid;
+
+    /**
+     * total pre discount
+     */
+    private int $tprdis;
+
+    /**
+     * total discount
+     */
+    private int $tdis;
+
+    /**
+     * total after discount
+     */
+    private int $tadis;
+
+    /**
+     * total VAT amount
+     */
+    private int $tvam;
+
+    /**
+     * total other duty amount
+     */
+    private int $todam;
+
+    /**
+     * total bill
+     */
+    private int $tbill;
+
+    /**
+     * settlement type
+     */
+    private ?int $setm;
+
+    /**
+     * cash payment
+     */
+    private ?string $cap;
+
+    /**
+     * installment payment
+     */
+    private ?int $insp;
+
+    /**
+     * total VAT of payment
+     */
+    private ?string $tvop;
+
+    /**
+     * tax17
+     */
+    private int $tax17;
+
+    public function getTaxid(): string
     {
-        return $this->indati2m;
+        return $this->taxid;
     }
 
-    public function setIndati2m(int $indati2m): InvoiceHeaderDto
+    public function setTaxid(string $taxid): self
     {
-        $this->indati2m = $indati2m;
+        $this->taxid = $taxid;
         return $this;
     }
 
@@ -186,9 +180,20 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->indatim;
     }
 
-    public function setIndatim(int $indatim): InvoiceHeaderDto
+    public function setIndatim(int $indatim): self
     {
         $this->indatim = $indatim;
+        return $this;
+    }
+
+    public function getIndati2m(): int
+    {
+        return $this->indati2m;
+    }
+
+    public function setIndati2m(int $indati2m): self
+    {
+        $this->indati2m = $indati2m;
         return $this;
     }
 
@@ -197,163 +202,31 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->inty;
     }
 
-    public function setInty(int $inty): InvoiceHeaderDto
+    public function setInty(int $inty): self
     {
         $this->inty = $inty;
         return $this;
     }
 
-    public function getFt(): int
-    {
-        return $this->ft;
-    }
-
-    public function setFt(?int $ft): InvoiceHeaderDto
-    {
-        $this->ft = $ft;
-        return $this;
-    }
-
-    public function getInno(): string
+    public function getInno(): ?string
     {
         return $this->inno;
     }
 
-    public function setInno(int $inno): InvoiceHeaderDto
+    public function setInno(?string $inno): self
     {
         $this->inno = $inno;
         return $this;
     }
 
-    public function getIrtaxid(): string
+    public function getIrtaxid(): ?string
     {
         return $this->irtaxid;
     }
 
-    public function setIrtaxid(?string $irtaxid): InvoiceHeaderDto
+    public function setIrtaxid(?string $irtaxid): self
     {
         $this->irtaxid = $irtaxid;
-        return $this;
-    }
-
-    public function getScln(): int
-    {
-        return $this->scln;
-    }
-
-    public function setScln(?int $scln): InvoiceHeaderDto
-    {
-        $this->scln = $scln;
-        return $this;
-    }
-
-    public function getSetm(): int
-    {
-        return $this->setm;
-    }
-
-    public function setSetm(int $setm): InvoiceHeaderDto
-    {
-        $this->setm = $setm;
-        return $this;
-    }
-
-    public function getTins(): ?string
-    {
-        return $this->tins;
-    }
-
-    public function setTins(?string $tins): InvoiceHeaderDto
-    {
-        $this->tins = $tins;
-        return $this;
-    }
-
-    public function getCap(): float
-    {
-        return $this->cap;
-    }
-
-    public function setCap(float $cap): InvoiceHeaderDto
-    {
-        $this->cap = $cap;
-        return $this;
-    }
-
-    public function getBid(): string
-    {
-        return $this->bid;
-    }
-
-    public function setBid(?string $bid): InvoiceHeaderDto
-    {
-        $this->bid = $bid;
-        return $this;
-    }
-
-    public function getInsp(): float
-    {
-        return $this->insp;
-    }
-
-    public function setInsp(float $insp): InvoiceHeaderDto
-    {
-        $this->insp = $insp;
-        return $this;
-    }
-
-    public function getTvop(): float
-    {
-        return $this->tvop;
-    }
-
-    public function setTvop(float $tvop): InvoiceHeaderDto
-    {
-        $this->tvop = $tvop;
-        return $this;
-    }
-
-    public function getBpc(): string
-    {
-        return $this->bpc;
-    }
-
-    public function setBpc(?string $bpc): InvoiceHeaderDto
-    {
-        $this->bpc = $bpc;
-        return $this;
-    }
-
-    public function getDpvb(): int
-    {
-        return $this->dpvb;
-    }
-
-    public function setDpvb(?int $dpvb): InvoiceHeaderDto
-    {
-        $this->dpvb = $dpvb;
-        return $this;
-    }
-
-    public function getTax17(): float
-    {
-        return $this->tax17;
-    }
-
-    public function setTax17(float $tax17): InvoiceHeaderDto
-    {
-        $this->tax17 = $tax17;
-        return $this;
-    }
-
-    public function getTaxid(): string
-    {
-        return $this->taxid;
-    }
-
-    public function setTaxid(string $taxid): InvoiceHeaderDto
-    {
-        $this->taxid = $taxid;
         return $this;
     }
 
@@ -362,20 +235,9 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->inp;
     }
 
-    public function setInp(int $inp): InvoiceHeaderDto
+    public function setInp(int $inp): self
     {
         $this->inp = $inp;
-        return $this;
-    }
-
-    public function getScc(): string
-    {
-        return $this->scc;
-    }
-
-    public function setScc(?string $scc): InvoiceHeaderDto
-    {
-        $this->scc = $scc;
         return $this;
     }
 
@@ -384,152 +246,273 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this->ins;
     }
 
-    public function setIns(int $ins): InvoiceHeaderDto
+    public function setIns(int $ins): self
     {
         $this->ins = $ins;
         return $this;
     }
 
-    public function getBillid(): string
+    public function getTins(): string
     {
-        return $this->billid;
+        return $this->tins;
     }
 
-    public function setBillid(?string $billid): InvoiceHeaderDto
+    public function setTins(string $tins): self
     {
-        $this->billid = $billid;
+        $this->tins = $tins;
         return $this;
     }
 
-    public function getTprdis(): float
-    {
-        return $this->tprdis;
-    }
-
-    public function setTprdis(float $tprdis): InvoiceHeaderDto
-    {
-        $this->tprdis = $tprdis;
-        return $this;
-    }
-
-    public function getTdis(): float
-    {
-        return $this->tdis;
-    }
-
-    public function setTdis(float $tdis): InvoiceHeaderDto
-    {
-        $this->tdis = $tdis;
-        return $this;
-    }
-
-    public function getTadis(): float
-    {
-        return $this->tadis;
-    }
-
-    public function setTadis(?float $tadis): InvoiceHeaderDto
-    {
-        $this->tadis = $tadis;
-        return $this;
-    }
-
-    public function getTvam(): float
-    {
-        return $this->tvam;
-    }
-
-    public function setTvam(float $tvam): InvoiceHeaderDto
-    {
-        $this->tvam = $tvam;
-        return $this;
-    }
-
-    public function getTodam(): ?float
-    {
-        return $this->todam;
-    }
-
-    public function setTodam(?float $todam): InvoiceHeaderDto
-    {
-        $this->todam = $todam;
-        return $this;
-    }
-
-    public function getTbill(): float
-    {
-        return $this->tbill;
-    }
-
-    public function setTbill(float $tbill): InvoiceHeaderDto
-    {
-        $this->tbill = $tbill;
-        return $this;
-    }
-
-    public function getTob(): int
+    public function getTob(): ?int
     {
         return $this->tob;
     }
 
-    public function setTob(?int $tob): InvoiceHeaderDto
+    public function setTob(?int $tob): self
     {
         $this->tob = $tob;
         return $this;
     }
 
-    public function getTinb(): string
+    public function getBid(): ?string
+    {
+        return $this->bid;
+    }
+
+    public function setBid(?string $bid): self
+    {
+        $this->bid = $bid;
+        return $this;
+    }
+
+    public function getTinb(): ?string
     {
         return $this->tinb;
     }
 
-    public function setTinb(?string $tinb): InvoiceHeaderDto
+    public function setTinb(?string $tinb): self
     {
         $this->tinb = $tinb;
         return $this;
     }
 
-    public function getSbc(): string
+    public function getSbc(): ?string
     {
         return $this->sbc;
     }
 
-    public function setSbc(?string $sbc): InvoiceHeaderDto
+    public function setSbc(?string $sbc): self
     {
         $this->sbc = $sbc;
         return $this;
     }
 
-    public function getBbc(): string
+    public function getBpc(): ?string
+    {
+        return $this->bpc;
+    }
+
+    public function setBpc(?string $bpc): self
+    {
+        $this->bpc = $bpc;
+        return $this;
+    }
+
+    public function getBbc(): ?string
     {
         return $this->bbc;
     }
 
-    public function setBbc(?string $bbc): InvoiceHeaderDto
+    public function setBbc(?string $bbc): self
     {
         $this->bbc = $bbc;
         return $this;
     }
 
-    public function getBpn(): string
+    public function getFt(): ?int
+    {
+        return $this->ft;
+    }
+
+    public function setFt(?int $ft): self
+    {
+        $this->ft = $ft;
+        return $this;
+    }
+
+    public function getBpn(): ?string
     {
         return $this->bpn;
     }
 
-    public function setBpn(?string $bpn): InvoiceHeaderDto
+    public function setBpn(?string $bpn): self
     {
         $this->bpn = $bpn;
         return $this;
     }
 
-    public function getCrn(): int
+    public function getScln(): ?int
+    {
+        return $this->scln;
+    }
+
+    public function setScln(?int $scln): self
+    {
+        $this->scln = $scln;
+        return $this;
+    }
+
+    public function getScc(): ?string
+    {
+        return $this->scc;
+    }
+
+    public function setScc(?string $scc): self
+    {
+        $this->scc = $scc;
+        return $this;
+    }
+
+    public function getCrn(): ?int
     {
         return $this->crn;
     }
 
-    public function setCrn(?int $crn): InvoiceHeaderDto
+    public function setCrn(?int $crn): self
     {
         $this->crn = $crn;
+        return $this;
+    }
+
+    public function getBillid(): ?string
+    {
+        return $this->billid;
+    }
+
+    public function setBillid(?string $billid): self
+    {
+        $this->billid = $billid;
+        return $this;
+    }
+
+    public function getTprdis(): int
+    {
+        return $this->tprdis;
+    }
+
+    public function setTprdis(int $tprdis): self
+    {
+        $this->tprdis = $tprdis;
+        return $this;
+    }
+
+    public function getTdis(): int
+    {
+        return $this->tdis;
+    }
+
+    public function setTdis(int $tdis): self
+    {
+        $this->tdis = $tdis;
+        return $this;
+    }
+
+    public function getTadis(): int
+    {
+        return $this->tadis;
+    }
+
+    public function setTadis(int $tadis): self
+    {
+        $this->tadis = $tadis;
+        return $this;
+    }
+
+    public function getTvam(): int
+    {
+        return $this->tvam;
+    }
+
+    public function setTvam(int $tvam): self
+    {
+        $this->tvam = $tvam;
+        return $this;
+    }
+
+    public function getTodam(): int
+    {
+        return $this->todam;
+    }
+
+    public function setTodam(int $todam): self
+    {
+        $this->todam = $todam;
+        return $this;
+    }
+
+    public function getTbill(): int
+    {
+        return $this->tbill;
+    }
+
+    public function setTbill(int $tbill): self
+    {
+        $this->tbill = $tbill;
+        return $this;
+    }
+
+    public function getSetm(): ?int
+    {
+        return $this->setm;
+    }
+
+    public function setSetm(?int $setm): self
+    {
+        $this->setm = $setm;
+        return $this;
+    }
+
+    public function getCap(): ?string
+    {
+        return $this->cap;
+    }
+
+    public function setCap(?string $cap): self
+    {
+        $this->cap = $cap;
+        return $this;
+    }
+
+    public function getInsp(): ?int
+    {
+        return $this->insp;
+    }
+
+    public function setInsp(?int $insp): self
+    {
+        $this->insp = $insp;
+        return $this;
+    }
+
+    public function getTvop(): ?string
+    {
+        return $this->tvop;
+    }
+
+    public function setTvop(?string $tvop): self
+    {
+        $this->tvop = $tvop;
+        return $this;
+    }
+
+    public function getTax17(): int
+    {
+        return $this->tax17;
+    }
+
+    public function setTax17(int $tax17): self
+    {
+        $this->tax17 = $tax17;
         return $this;
     }
 }

@@ -4,143 +4,142 @@ namespace SnappMarketPro\Moadian\Dto;
 
 class InvoiceBodyDto extends PrimitiveDto
 {
-
     /**
-     * service Stuff Id
+     * service stuff ID
      */
     private ?string $sstid;
 
     /**
-     * serviceStuffTitle
+     * service stuff title
      */
     private string $sstt;
 
     /**
-     * measurementUnit
-     */
-    private int $mu;
-
-    /**
      * amount
      */
-    private float $am;
+    private int $am;
 
     /**
-     * fee
+     * measurement unit
      */
-    private float $fee;
+    private string $mu;
 
     /**
-     * currencyFee
+     * fee (pure price per item)
+     */
+    private int $fee;
+
+    /**
+     * fee in foreign currency
      */
     private ?float $cfee;
 
     /**
-     * currencyType
+     * currency type
      */
     private ?string $cut;
 
     /**
-     * exchangeRate
+     * exchange rate
      */
-    private ?string $exr;
+    private ?int $exr;
 
     /**
-     * preDiscount
+     * pre discount
      */
-    private float $prdis;
+    private int $prdis;
 
     /**
      * discount
      */
-    private float $dis;
+    private int $dis;
 
     /**
-     * afterDiscount
+     * after discount
      */
-    private float $adis;
+    private int $adis;
 
     /**
-     * vatRate
+     * VAT rate
      */
-    private float $vra;
+    private int $vra;
 
     /**
-     * vatAmount
+     * VAT amount
      */
-    private float $vam;
+    private int $vam;
 
     /**
-     * overDutyTitle
+     * over duty title
      */
     private ?string $odt;
 
     /**
-     * overDutyRate
+     * over duty rate
      */
     private ?float $odr;
 
     /**
-     * overDutyAmount
+     * over duty amount
      */
-    private ?float $odam;
+    private ?int $odam;
 
     /**
-     * otherLegalTitle
+     * other legal title
      */
     private ?string $olt;
 
     /**
-     * otherLegalRate
+     * other legal rate
      */
     private ?float $olr;
 
     /**
-     * otherLegalAmount
+     * other legal amount
      */
-    private ?float $olam;
+    private ?int $olam;
 
     /**
-     * constructionFee
+     * construction fee
      */
-    private ?float $consfee;
+    private ?int $consfee;
 
     /**
-     * sellerProfit
+     * seller profit
      */
-    private ?float $spro;
+    private ?int $spro;
 
     /**
-     * brokerSalary
+     * broker salary
      */
-    private ?float $bros;
+    private ?int $bros;
 
     /**
-     * totalConstructionProfitBrokerSalary
+     * total construction profit broker salary
      */
-    private ?float $tcpbs;
+    private ?int $tcpbs;
 
     /**
-     * cashOfPayment
+     * cash share of payment
      */
-    private ?float $cop;
+    private ?int $cop;
 
     /**
-     * buyerSRegisterNumber
-     */
-    private ?string $bsrn;
-
-    /**
-     * vatOfPayment
+     * vat of payment
      */
     private ?string $vop;
 
     /**
-     * totalServiceStuffAmount
+     * buyer register number
      */
-    private float $tsstam;
+    private ?string $bsrn;
 
-    public function getSstid(): string
+    /**
+     * total service stuff amount
+     */
+    private int $tsstam;
+
+    public function getSstid(): ?string
     {
         return $this->sstid;
     }
@@ -151,7 +150,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getSstt(): ?string
+    public function getSstt(): string
     {
         return $this->sstt;
     }
@@ -162,40 +161,40 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getMu(): string
-    {
-        return $this->mu;
-    }
-
-    public function setMu(int $mu): self
-    {
-        $this->mu = $mu;
-        return $this;
-    }
-
-    public function getAm(): float
+    public function getAm(): int
     {
         return $this->am;
     }
 
-    public function setAm(float $am): self
+    public function setAm(int $am): self
     {
         $this->am = $am;
         return $this;
     }
 
-    public function getFee(): float
+    public function getMu(): string
+    {
+        return $this->mu;
+    }
+
+    public function setMu(string $mu): self
+    {
+        $this->mu = $mu;
+        return $this;
+    }
+
+    public function getFee(): int
     {
         return $this->fee;
     }
 
-    public function setFee(float $fee): self
+    public function setFee(int $fee): self
     {
         $this->fee = $fee;
         return $this;
     }
 
-    public function getCfee(): float
+    public function getCfee(): ?float
     {
         return $this->cfee;
     }
@@ -206,7 +205,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getCut(): string
+    public function getCut(): ?string
     {
         return $this->cut;
     }
@@ -217,73 +216,73 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getExr(): string
+    public function getExr(): ?int
     {
         return $this->exr;
     }
 
-    public function setExr(?string $exr): self
+    public function setExr(?int $exr): self
     {
         $this->exr = $exr;
         return $this;
     }
 
-    public function getPrdis(): float
+    public function getPrdis(): int
     {
         return $this->prdis;
     }
 
-    public function setPrdis(float $prdis): self
+    public function setPrdis(int $prdis): self
     {
         $this->prdis = $prdis;
         return $this;
     }
 
-    public function getDis(): float
+    public function getDis(): int
     {
         return $this->dis;
     }
 
-    public function setDis(float $dis): self
+    public function setDis(int $dis): self
     {
         $this->dis = $dis;
         return $this;
     }
 
-    public function getAdis(): float
+    public function getAdis(): int
     {
         return $this->adis;
     }
 
-    public function setAdis(float $adis): self
+    public function setAdis(int $adis): self
     {
         $this->adis = $adis;
         return $this;
     }
 
-    public function getVra(): float
+    public function getVra(): int
     {
         return $this->vra;
     }
 
-    public function setVra(float $vra): self
+    public function setVra(int $vra): self
     {
         $this->vra = $vra;
         return $this;
     }
 
-    public function getVam(): float
+    public function getVam(): int
     {
         return $this->vam;
     }
 
-    public function setVam(float $vam): self
+    public function setVam(int $vam): self
     {
         $this->vam = $vam;
         return $this;
     }
 
-    public function getOdt(): string
+    public function getOdt(): ?string
     {
         return $this->odt;
     }
@@ -294,7 +293,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getOdr(): float
+    public function getOdr(): ?float
     {
         return $this->odr;
     }
@@ -305,18 +304,18 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getOdam(): float
+    public function getOdam(): ?int
     {
         return $this->odam;
     }
 
-    public function setOdam(?float $odam): self
+    public function setOdam(?int $odam): self
     {
         $this->odam = $odam;
         return $this;
     }
 
-    public function getOlt(): string
+    public function getOlt(): ?string
     {
         return $this->olt;
     }
@@ -327,7 +326,7 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getOlr(): float
+    public function getOlr(): ?int
     {
         return $this->olr;
     }
@@ -338,84 +337,73 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getOlam(): float
+    public function getOlam(): ?float
     {
         return $this->olam;
     }
 
-    public function setOlam(?float $olam): self
+    public function setOlam(?int $olam): self
     {
         $this->olam = $olam;
         return $this;
     }
 
-    public function getConsfee(): float
+    public function getConsfee(): ?int
     {
         return $this->consfee;
     }
 
-    public function setConsfee(?float $consfee): self
+    public function setConsfee(?int $consfee): self
     {
         $this->consfee = $consfee;
         return $this;
     }
 
-    public function getSpro(): float
+    public function getSpro(): ?int
     {
         return $this->spro;
     }
 
-    public function setSpro(?float $spro): self
+    public function setSpro(?int $spro): self
     {
         $this->spro = $spro;
         return $this;
     }
 
-    public function getBros(): float
+    public function getBros(): ?int
     {
         return $this->bros;
     }
 
-    public function setBros(?float $bros): self
+    public function setBros(?int $bros): self
     {
         $this->bros = $bros;
         return $this;
     }
 
-    public function getTcpbs(): float
+    public function getTcpbs(): ?int
     {
         return $this->tcpbs;
     }
 
-    public function setTcpbs(?float $tcpbs): self
+    public function setTcpbs(?int $tcpbs): self
     {
         $this->tcpbs = $tcpbs;
         return $this;
     }
 
-    public function getCop(): float
+    public function getCop(): ?int
     {
         return $this->cop;
     }
 
-    public function setCop(?float $cop): self
+    public function setCop(?int $cop): self
     {
         $this->cop = $cop;
         return $this;
     }
 
-    public function getBsrn(): string
-    {
-        return $this->bsrn;
-    }
-
-    public function setBsrn(?string $bsrn): self
-    {
-        $this->bsrn = $bsrn;
-        return $this;
-    }
-
-    public function getVop(): string
+    public function getVop(): ?string
     {
         return $this->vop;
     }
@@ -426,12 +414,23 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getTsstam(): float
+    public function getBsrn(): ?string
+    {
+        return $this->bsrn;
+    }
+
+    public function setBsrn(?string $bsrn): self
+    {
+        $this->bsrn = $bsrn;
+        return $this;
+    }
+
+    public function getTsstam(): int
     {
         return $this->tsstam;
     }
 
-    public function setTsstam(float $tsstam): self
+    public function setTsstam(int $tsstam): self
     {
         $this->tsstam = $tsstam;
         return $this;
