@@ -36,9 +36,7 @@ class InvoiceIdService extends \SnappMarketPro\Moadian\Services\SignatureService
 
     private function getDaysPastEpoch(DateTime $date): int
     {
-        $epoch = new DateTime('1970-01-01');
-
-        return $date->diff($epoch)->days;
+        return (int)($date->getTimestamp() / (3600 * 24));
     }
 
     private function clientIdToNumber(string $clientId): string
