@@ -1,39 +1,20 @@
 <?php
 
+
 namespace SnappMarketPro\Moadian\Dto;
+
 
 class InquiryByReferenceNumberDto extends PrimitiveDto
 {
-    /**
-     * @var string[]
-     */
-    private array $referenceNumbers;
+    private  $referenceNumber;
 
-    /**
-     * @param string[] $referenceNumbers
-     * @return $this
-     */
-    public function setReferenceNumbers(array $referenceNumbers): self
+    public function setReferenceNumber(string $referenceNumber)
     {
-        $this->referenceNumbers = $referenceNumbers;
-        return $this;
+        $this->referenceNumber = [$referenceNumber];
     }
 
-    /**
-     * @param string $referenceNumber
-     * @return $this
-     */
-    public function addReferenceNumber(string $referenceNumber): self
+    public function getReferenceNumber(string $referenceNumber)
     {
-        $this->referenceNumbers[] = $referenceNumber;
-        return $this;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getReferenceNumbers(): array
-    {
-        return $this->referenceNumbers;
+        return $this->referenceNumber;
     }
 }
