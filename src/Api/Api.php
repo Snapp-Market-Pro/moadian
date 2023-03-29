@@ -57,6 +57,23 @@ class Api
         return $this->httpClient->sendPacket($path, $packet, $headers);
 
     }
+    
+    public function getEconomicCodeInformation(string $taxID)
+    {
+        $this->requireToken();
+
+        $packet = new Packet(PacketType::GET_ECONOMIC_CODE_INFORMATION, json_encode(["economicCode" => $taxID]));
+
+        $packet->setRetry(false);
+        $packet->setFiscalId($this->username);
+        $headers = $this->getEssentialHeaders();
+        $headers['Authorization'] = 'Bearer ' . $this->token->getToken();
+
+        $path = 'req/api/self-tsp/sync/' . PacketType::GET_ECONOMIC_CODE_INFORMATION;
+
+        return $this->httpClient->sendPacket($path, $packet, $headers);
+
+    }
 
     public function sendInvoices(array $invoiceDtos)
     {
@@ -100,12 +117,13 @@ class Api
 
         $headers = $this->getEssentialHeaders();
 
-        $headers[TransferConstants::AUTHORIZATION_HEADER] = $this->token->getToken();
+        // $headers[TransferConstants::AUTHORIZATION_HEADER] = $this->token->getToken();
+        $headers['Authorization'] = 'Bearer ' . $this->token->getToken();
 
         return $this->httpClient->sendPacket('req/api/self-tsp/sync/GET_FISCAL_INFORMATION', $packet, $headers);
     }
 
-    public function setToken(Token $token): self
+    public function setToken(null|Token $token): self
     {
         $this->token = $token;
         return $this;
