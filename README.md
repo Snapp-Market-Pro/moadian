@@ -1,7 +1,3 @@
-# Note: This code is not recommended for production use
-
-This project was forked from Snapp-Market-Pro/moadian for personal modification and is not intended to be used in a production environment. While the code may be functional, it has not been thoroughly tested or optimized for performance, and may contain bugs or security vulnerabilities. 
-
 # سامانه مودیان
 
 کد PHP - لاراول
@@ -11,7 +7,7 @@ This project was forked from Snapp-Market-Pro/moadian for personal modification 
 ## Installation
 
 ```bash
-composer require jooyeshgar/moadian
+composer require snapp-market-pro/moadian
 ```
 
 ## Usage
