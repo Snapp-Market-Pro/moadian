@@ -88,4 +88,24 @@ class Moadian
         $api->setToken($this->token);
         return $api->inquiryByReferenceNumber($referenceNumber);
     }
+
+    public function getEconomicCodeInformation(string $taxID)
+    {
+        $signatureService = new SignatureService($this->privateKey);
+        $encryptionService = new EncryptionService($this->orgKeyId, null);
+        $httpClient = new HttpClient($this->baseURL, $signatureService, $encryptionService);
+        $api = new Api($this->username, $httpClient);
+        $api->setToken($this->token);
+        return $api->getEconomicCodeInformation($taxID);
+    }
+
+    public function getFiscalInfo()
+    {
+        $signatureService = new SignatureService($this->privateKey);
+        $encryptionService = new EncryptionService($this->orgKeyId, null);
+        $httpClient = new HttpClient($this->baseURL, $signatureService, $encryptionService);
+        $api = new Api($this->username, $httpClient);
+        $api->setToken($this->token);
+        return $api->getFiscalInfo();
+    }
 }
