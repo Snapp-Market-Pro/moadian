@@ -6,6 +6,11 @@
       "SnappMarketPro\\Moadian\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "SnappMarketPro\\Moadian\\Tests\\": "tests"
+    }
+  },
   "authors": [
     {
       "name": "Ali Rahimi",
