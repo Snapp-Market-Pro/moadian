@@ -35,5 +35,8 @@
     "phpunit/phpunit": "^10.0",
     "monolog/monolog": "^3.3",
     "symfony/var-dumper": "^6.2"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit tests --colors"
   }
 }
