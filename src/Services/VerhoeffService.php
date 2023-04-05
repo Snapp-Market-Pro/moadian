@@ -41,7 +41,7 @@ class VerhoeffService
         return self::INVERSE_TABLE[$c];
     }
 
-    public static function Validate($number): bool
+    public static function validate($number): bool
     {
         $c = 0;
         $len = strlen($number);
