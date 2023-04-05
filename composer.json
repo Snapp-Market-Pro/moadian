@@ -1,6 +1,8 @@
 {
   "name": "snapp-market-pro/moadian",
   "type": "library",
+  "description": "PHP SDK for working with tp.tax.gov.ir (سامانه مودیان مالیاتی)",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "SnappMarketPro\\Moadian\\": "src/"
