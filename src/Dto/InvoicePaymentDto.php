@@ -35,6 +35,8 @@ class InvoicePaymentDto extends PrimitiveDto
      */
     private ?string $pid;
 
+    private ?int $pmt;
+
     /**
      * payment DateTime
      */
@@ -114,6 +116,18 @@ class InvoicePaymentDto extends PrimitiveDto
     public function setPdt(?int $pdt): self
     {
         $this->pdt = $pdt;
+        return $this;
+    }
+
+
+    public function getPmt(): ?int
+    {
+        return $this->pmt;
+    }
+
+    public function setPmt(?int $pmt): self
+    {
+        $this->pmt = $pmt;
         return $this;
     }
 }
