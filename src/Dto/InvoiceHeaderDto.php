@@ -147,7 +147,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * cash payment
      */
-    private ?string $cap;
+    private ?int $cap;
 
     /**
      * installment payment
@@ -472,12 +472,12 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this;
     }
 
-    public function getCap(): ?string
+    public function getCap(): ?int
     {
         return $this->cap;
     }
 
-    public function setCap(?string $cap): self
+    public function setCap(?int $cap): self
     {
         $this->cap = $cap;
         return $this;
