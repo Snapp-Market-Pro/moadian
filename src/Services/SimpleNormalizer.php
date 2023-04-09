@@ -1,8 +1,8 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Services;
+namespace Arissystem\Moadian\Services;
 
-use SnappMarketPro\Moadian\Constants\TransferConstants;
+use Arissystem\Moadian\Constants\TransferConstants;
 
 class SimpleNormalizer
 {

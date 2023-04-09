@@ -1,20 +1,31 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Tests;
+namespace Arissystem\Moadian\Tests;
 
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SnappMarketPro\Moadian\Services\VerhoeffService;
+use Arissystem\Moadian\Services\VerhoeffService;
 
 class VerhoeffServiceTest extends TestCase
 {
-    #[DataProvider('rawNumberProvider')]
+    /**
+     * @test
+     * @param string $number
+     * @param int $expectedChecksum
+     * @return void
+     * @dataProvider rawNumberProvider
+     */
     public function testItCanGenerateChecksum(string $number, int $expectedChecksum): void
     {
         $this->assertEquals($expectedChecksum, VerhoeffService::checkSum($number));
     }
 
-    #[DataProvider('checkedNumberProvider')]
+    /**
+     * @test
+     * @param string $number
+     * @param bool $correct
+     * @return void
+     * @dataProvider checkedNumberProvider
+     */
     public function testItCanValidateCheckedNumbers(string $number, bool $correct): void
     {
         $this->assertEquals($correct, VerhoeffService::validate($number));

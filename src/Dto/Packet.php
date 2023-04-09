@@ -1,6 +1,6 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Dto;
+namespace Arissystem\Moadian\Dto;
 
 use Ramsey\Uuid\Uuid;
 
@@ -12,7 +12,7 @@ class Packet
 
     private bool $retry = false;
 
-    private PacketDataInterface|string|null $data;
+    private $data;
 
     private ?string $encryptionKeyId = '';
 
@@ -24,11 +24,11 @@ class Packet
 
     private ?string $dataSignature = '';
 
-    private string|null $signatureKeyId = null;
+    private ?string $signatureKeyId = null;
 
     public function __construct(
         string $packetType,
-        PacketDataInterface|string|null $data = null,
+        $data = null
     ) {
         $this->packetType = $packetType;
         $this->data = $data;
@@ -68,12 +68,12 @@ class Packet
         return $this;
     }
 
-    public function getData(): PacketDataInterface|string|null
+    public function getData()
     {
         return $this->data;
     }
 
-    public function setData(PacketDataInterface|string|null $data): self
+    public function setData($data): self
     {
         $this->data = $data;
         return $this;
@@ -134,12 +134,12 @@ class Packet
         return $this;
     }
 
-    public function getSignatureKeyId(): string|null
+    public function getSignatureKeyId(): ?string
     {
         return $this->signatureKeyId;
     }
 
-    public function setSignatureKeyId(string|null $signatureKeyId): self
+    public function setSignatureKeyId(?string $signatureKeyId): self
     {
         $this->signatureKeyId = $signatureKeyId;
         return $this;

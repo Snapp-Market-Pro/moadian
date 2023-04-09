@@ -1,29 +1,29 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Api;
+namespace Arissystem\Moadian\Api;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Ramsey\Uuid\Uuid;
-use SnappMarketPro\Moadian\Constants\PacketType;
-use SnappMarketPro\Moadian\Constants\TransferConstants;
-use SnappMarketPro\Moadian\Dto\GetTokenDto;
-use SnappMarketPro\Moadian\Dto\InquiryByReferenceNumberDto;
-use SnappMarketPro\Moadian\Dto\Packet;
-use SnappMarketPro\Moadian\Dto\Token;
-use SnappMarketPro\Moadian\Services\HttpClient;
+use Arissystem\Moadian\Constants\PacketType;
+use Arissystem\Moadian\Constants\TransferConstants;
+use Arissystem\Moadian\Dto\GetTokenDto;
+use Arissystem\Moadian\Dto\InquiryByReferenceNumberDto;
+use Arissystem\Moadian\Dto\Packet;
+use Arissystem\Moadian\Dto\Token;
+use Arissystem\Moadian\Services\HttpClient;
 
 class Api
 {
+    private string $username;
+    private HttpClient $httpClient;
     private ?Token $token = null;
 
-    public function __construct(
-        private string $username,
-        private HttpClient $httpClient,
-    ) {
+    public function __construct(string $username, HttpClient $httpClient)
+    {
+        $this->username = $username;
+        $this->httpClient = $httpClient;
     }
 
     /**
-     * @throws GuzzleException
      */
     public function getToken(): Token
     {
@@ -106,8 +106,7 @@ class Api
     }
 
     /**
-     * @return array<mixed>
-     * @throws GuzzleException
+     * @return array
      */
     public function getFiscalInfo(): array
     {
@@ -123,7 +122,7 @@ class Api
         return $this->httpClient->sendPacket('req/api/self-tsp/sync/GET_FISCAL_INFORMATION', $packet, $headers);
     }
 
-    public function setToken(null|Token $token): self
+    public function setToken(?Token $token): self
     {
         $this->token = $token;
         return $this;

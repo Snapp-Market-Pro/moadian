@@ -1,6 +1,6 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Dto;
+namespace Arissystem\Moadian\Dto;
 
 class InvoiceDto implements PacketDataInterface
 {
@@ -17,7 +17,7 @@ class InvoiceDto implements PacketDataInterface
         return $this->header;
     }
 
-    public function setHeader(InvoiceHeaderDto $header): static
+    public function setHeader(InvoiceHeaderDto $header): InvoiceDto
     {
         $this->header = $header;
         return $this;
@@ -34,7 +34,7 @@ class InvoiceDto implements PacketDataInterface
     /**
      * @param InvoiceBodyDto[] $body
      */
-    public function setBody(array $body): static
+    public function setBody(array $body): InvoiceDto
     {
         $this->body = $body;
         return $this;
@@ -51,7 +51,7 @@ class InvoiceDto implements PacketDataInterface
     /**
      * @param InvoicePaymentDto[] $payments
      */
-    public function setPayments(array $payments): static
+    public function setPayments(array $payments): InvoiceDto
     {
         $this->payments = $payments;
         return $this;

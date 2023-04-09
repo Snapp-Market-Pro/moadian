@@ -1,9 +1,9 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Tests;
+namespace Arissystem\Moadian\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SnappMarketPro\Moadian\Services\Normalizer;
+use Arissystem\Moadian\Services\Normalizer;
 
 class NormalizerTest extends TestCase
 {

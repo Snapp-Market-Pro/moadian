@@ -1,6 +1,6 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Services;
+namespace Arissystem\Moadian\Services;
 
 class VerhoeffService
 {

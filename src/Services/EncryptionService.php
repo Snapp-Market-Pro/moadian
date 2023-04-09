@@ -1,6 +1,6 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Services;
+namespace Arissystem\Moadian\Services;
 
 use RuntimeException;
 
@@ -8,9 +8,13 @@ class EncryptionService
 {
     private const CIPHER = 'aes-256-gcm';
     private const TAG_LENGTH = 16;
+    private $taxOrgPublicKey;
+    private ?string $encryptionKeyId;
 
-    public function __construct(private $taxOrgPublicKey, private ?string $encryptionKeyId)
+    public function __construct($taxOrgPublicKey, ?string $encryptionKeyId)
     {
+        $this->taxOrgPublicKey = $taxOrgPublicKey;
+        $this->encryptionKeyId = $encryptionKeyId;
     }
 
     /**

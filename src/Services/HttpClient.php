@@ -1,6 +1,6 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Services;
+namespace Arissystem\Moadian\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -11,13 +11,18 @@ use Psr\Http\Message\ResponseInterface;
 class HttpClient
 {
     private Client $client;
+    private SignatureService $signatureService;
+    private EncryptionService $encryptionService;
 
     public function __construct(
         string $baseUri,
-        private SignatureService $signatureService,
-        private EncryptionService $encryptionService,
+        SignatureService $signatureService,
+        EncryptionService $encryptionService
     )
     {
+        $this->signatureService = $signatureService;
+        $this->encryptionService = $encryptionService;
+
         $this->client = new Client([
             'base_uri' => $baseUri,
             'headers' => ['Content-Type' => 'application/json'],

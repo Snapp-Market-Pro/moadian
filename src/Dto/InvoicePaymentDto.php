@@ -1,6 +1,6 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Dto;
+namespace Arissystem\Moadian\Dto;
 
 class InvoicePaymentDto extends PrimitiveDto
 {

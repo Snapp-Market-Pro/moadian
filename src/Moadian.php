@@ -18,16 +18,25 @@ use SnappMarketPro\Moadian\Services\SignatureService;
 
 class Moadian
 {
-    private $token;
+    private Token $token;
+    protected string $publicKey;
+    protected string $privateKey;
+    protected string $orgKeyId;
+    protected string $username;
+    protected string $baseURL = 'https://tp.tax.gov.ir';
 
     public function __construct(
-        protected readonly string $publicKey,
-        protected readonly string $privateKey,
-        protected readonly string $orgKeyId,
-        protected readonly string $username,
-        protected readonly string $baseURL = 'https://tp.tax.gov.ir',
-    )
-    {
+        string $publicKey,
+        string $privateKey,
+        string $orgKeyId,
+        string $username,
+        string $baseURL = 'https://tp.tax.gov.ir'
+    ){
+        $this->publicKey = $publicKey;
+        $this->privateKey = $privateKey;
+        $this->orgKeyId = $orgKeyId;
+        $this->username = $username;
+        $this->baseURL = $baseURL;
     }
 
     public function setToken(Token $token): self

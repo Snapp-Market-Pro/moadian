@@ -1,13 +1,18 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Services;
+namespace Arissystem\Moadian\Services;
 
 use RuntimeException;
 
 class SignatureService
 {
-    public function __construct(private string $privateKey, private string|null $keyId = null)
+    private string $privateKey;
+    private ?string $keyId = null;
+
+    public function __construct(string $privateKey, ?string $keyId = null)
     {
+        $this->privateKey = $privateKey;
+        $this->keyId = $keyId;
     }
 
     public function sign(string $text): string
@@ -21,7 +26,7 @@ class SignatureService
         }
     }
 
-    public function getKeyId(): string|null
+    public function getKeyId(): ?string
     {
         return $this->keyId;
     }

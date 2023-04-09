@@ -1,13 +1,16 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Dto;
+namespace Arissystem\Moadian\Dto;
 
 class Token
 {
-    public function __construct(
-        private string $token,
-        private int $expiresAt,
-    ) {
+    private string $token;
+        private int $expiresAt;
+
+    public function __construct(string $token, int $expiresAt)
+    {
+        $this->token = $token;
+        $this->expiresAt = $expiresAt;
     }
 
     public function getToken(): string

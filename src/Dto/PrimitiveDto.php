@@ -1,6 +1,8 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Dto;
+namespace Arissystem\Moadian\Dto;
+
+use Arissystem\Moadian\Dto\PacketDataInterface;
 
 abstract class PrimitiveDto implements PacketDataInterface
 {
