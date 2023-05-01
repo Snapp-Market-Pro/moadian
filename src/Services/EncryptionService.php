@@ -2,7 +2,7 @@
 
 namespace SnappMarketPro\Moadian\Services;
 
-use RuntimeException;
+use phpseclib3\Crypt\RSA;
 
 class EncryptionService
 {
@@ -59,12 +59,11 @@ class EncryptionService
 
     public function encryptAesKey(string $aesKey): string
     {
-        $encryptedKey = '';
-        if (openssl_public_encrypt($aesKey, $encryptedKey, $this->taxOrgPublicKey)) {
-            return base64_encode($encryptedKey);
-        } else {
-            throw new RuntimeException('Failed to encrypt the AES key with message ' . openssl_error_string());
-        }
+        $rsa = RSA::loadPublicKey($this->taxOrgPublicKey);
+
+        $encryptedKey = $rsa->encrypt($aesKey);
+
+        return base64_encode($encryptedKey);
     }
 
     public function getEncryptionKeyId(): string

@@ -31,7 +31,8 @@
     "php": "^8.0",
     "ext-openssl": "*",
     "guzzlehttp/guzzle": "^7.5",
-    "ramsey/uuid": "^4.7"
+    "ramsey/uuid": "^4.7",
+    "phpseclib/phpseclib": "~3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0",
