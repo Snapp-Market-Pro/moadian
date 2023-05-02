@@ -11,8 +11,8 @@ composer require snapp-market-pro/moadian
 ```
 
 ## Usage
-```php
 
+```php
 <?php
 
 use SnappMarketPro\Moadian\Constants\PacketType;
@@ -38,93 +38,92 @@ $moadian = new Moadian(
     $username
 );
 
-$taxId = $moadian->generateTaxId(new DateTime(), 1)
+$taxId = $moadian->generateTaxId(new DateTime(), 1);
 
-$invoiceHeaderDto = new InvoiceHeaderDto();
-$invoiceHeaderDto->setIndati2m(1000000);
-$invoiceHeaderDto->setIndatim(1000000);
-$invoiceHeaderDto->setInty(1);
-$invoiceHeaderDto->setFt(null);
-$invoiceHeaderDto->setInno(2);
-$invoiceHeaderDto->setIrtaxid(null);
-$invoiceHeaderDto->setScln(null);
-$invoiceHeaderDto->setSetm(1);
-$invoiceHeaderDto->setTins('5555555555');
-$invoiceHeaderDto->setCap(100);
-$invoiceHeaderDto->setBid(null);
-$invoiceHeaderDto->setInsp(100);
-$invoiceHeaderDto->setTvop(0);
-$invoiceHeaderDto->setBpc(null);
-$invoiceHeaderDto->setDpvb(null);
-$invoiceHeaderDto->setTax17(0);
-$invoiceHeaderDto->setTaxid($taxId);
-$invoiceHeaderDto->setInp(1);
-$invoiceHeaderDto->setScc(null);
-$invoiceHeaderDto->setIns(3);
-$invoiceHeaderDto->setBillid(null);
-$invoiceHeaderDto->setTprdis(100);
-$invoiceHeaderDto->setTdis(0);
-$invoiceHeaderDto->setTadis(null);
-$invoiceHeaderDto->setTvam(0);
-$invoiceHeaderDto->setTodam(0);
-$invoiceHeaderDto->setTbill(0);
-$invoiceHeaderDto->setTob(null);
-$invoiceHeaderDto->setTinb(null);
-$invoiceHeaderDto->setSbc(null);
-$invoiceHeaderDto->setBbc(null);
-$invoiceHeaderDto->setBpn(null);
-$invoiceHeaderDto->setCrn(null);
+$invoiceHeaderDto = (new InvoiceHeaderDto)
+    ->setIndati2m(1000000)
+    ->setIndatim(1000000)
+    ->setInty(1)
+    ->setFt(null)
+    ->setInno(2)
+    ->setIrtaxid(null)
+    ->setScln(null)
+    ->setSetm(1)
+    ->setTins('5555555555')
+    ->setCap(100)
+    ->setBid(null)
+    ->setInsp(100)
+    ->setTvop(0)
+    ->setBpc(null)
+    ->setTax17(0)
+    ->setTaxid($taxId)
+    ->setInp(1)
+    ->setScc(null)
+    ->setIns(3)
+    ->setBillid(null)
+    ->setTprdis(100)
+    ->setTdis(0)
+    ->setTadis(null)
+    ->setTvam(0)
+    ->setTodam(0)
+    ->setTbill(0)
+    ->setTob(null)
+    ->setTinb(null)
+    ->setSbc(null)
+    ->setBbc(null)
+    ->setBpn(null)
+    ->setCrn(null);
 
 
-$invoiceBodyDto = new InvoiceBodyDto();
-$invoiceBodyDto->setSstid('1111111111');
-$invoiceBodyDto->setSstt('A');
-$invoiceBodyDto->setMu(23);
-$invoiceBodyDto->setAm('2');
-$invoiceBodyDto->setFee('100');
-$invoiceBodyDto->setCfee(null);
-$invoiceBodyDto->setCut(null);
-$invoiceBodyDto->setExr(null);
-$invoiceBodyDto->setPrdis('100');
-$invoiceBodyDto->setDis('100');
-$invoiceBodyDto->setAdis('0');
-$invoiceBodyDto->setVra('0');
-$invoiceBodyDto->setVam('0');
-$invoiceBodyDto->setOdt(null);
-$invoiceBodyDto->setOdr(null);
-$invoiceBodyDto->setOdam(null);
-$invoiceBodyDto->setOlt(null);
-$invoiceBodyDto->setOlr(null);
-$invoiceBodyDto->setOlam(null);
-$invoiceBodyDto->setConsfee(null);
-$invoiceBodyDto->setSpro(null);
-$invoiceBodyDto->setBros(null);
-$invoiceBodyDto->setTcpbs(null);
-$invoiceBodyDto->setCop(null);
-$invoiceBodyDto->setBsrn(null);
-$invoiceBodyDto->setVop(null);
-$invoiceBodyDto->setTsstam('100');
+$invoiceBodyDto = (new InvoiceBodyDto)
+    ->setSstid('1111111111')
+    ->setSstt('A')
+    ->setMu(23)
+    ->setAm('2')
+    ->setFee('100')
+    ->setCfee(null)
+    ->setCut(null)
+    ->setExr(null)
+    ->setPrdis('100')
+    ->setDis('100')
+    ->setAdis('0')
+    ->setVra('0')
+    ->setVam('0')
+    ->setOdt(null)
+    ->setOdr(null)
+    ->setOdam(null)
+    ->setOlt(null)
+    ->setOlr(null)
+    ->setOlam(null)
+    ->setConsfee(null)
+    ->setSpro(null)
+    ->setBros(null)
+    ->setTcpbs(null)
+    ->setCop(null)
+    ->setBsrn(null)
+    ->setVop(null)
+    ->setTsstam('100');
 
-$invoicePaymentDto = new InvoicePaymentDto();
-$invoicePaymentDto->setIinn("1131244211");
-$invoicePaymentDto->setAcn("2131244212");
-$invoicePaymentDto->setTrmn("3131244213");
-$invoicePaymentDto->setTrn("4131244214");
-$invoicePaymentDto->setPcn(null);
-$invoicePaymentDto->setPid(null);
-$invoicePaymentDto->setPdt(null);
+$invoicePaymentDto = (new InvoicePaymentDto)
+    ->setIinn("1131244211")
+    ->setAcn("2131244212")
+    ->setTrmn("3131244213")
+    ->setTrn("4131244214")
+    ->setPcn(null)
+    ->setPid(null)
+    ->setPdt(null);
 
-$invoiceDto = new InvoiceDto();
-$invoiceDto->setHeader($invoiceHeaderDto);
-$invoiceDto->setBody([$invoiceBodyDto]);
-$invoiceDto->setPayments([$invoicePaymentDto]);
+$invoiceDto = (new InvoiceDto)
+    ->setHeader($invoiceHeaderDto)
+    ->setBody([$invoiceBodyDto])
+    ->setPayments([$invoicePaymentDto]);
 
-$packet = new Packet(PacketType::INVOICE_V01, $invoiceDto);
-$packet->setFiscalId($username);
-$packet->setDataSignature(null);
-$packet->setEncryptionKeyId(null);
-$packet->setIv(null);
-$packet->setSymmetricKey(null);
+$packet = (new Packet(PacketType::INVOICE_V01, $invoiceDto))
+    ->setFiscalId($username)
+    ->setDataSignature(null)
+    ->setEncryptionKeyId(null)
+    ->setIv(null)
+    ->setSymmetricKey(null);
 
 
 $token = $moadian->getToken();
