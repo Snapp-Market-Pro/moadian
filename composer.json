@@ -13,6 +13,13 @@
       "AlirezaA2F\\Moadian\\Tests\\": "tests"
     }
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "AlirezaA2F\\Moadian"
+      ]
+    }
+  },
   "authors": [
     {
       "name": "Alireza Feyzyab",
