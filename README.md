@@ -15,13 +15,13 @@ composer require alireza-a2f/moadian
 ```php
 <?php
 
-use SnappMarketPro\Moadian\Constants\PacketType;
-use SnappMarketPro\Moadian\Dto\InvoiceBodyDto;
-use SnappMarketPro\Moadian\Dto\InvoiceDto;
-use SnappMarketPro\Moadian\Dto\InvoiceHeaderDto;
-use SnappMarketPro\Moadian\Dto\InvoicePaymentDto;
-use SnappMarketPro\Moadian\Dto\Packet;
-use SnappMarketPro\Moadian\Moadian;
+use AlirezaA2F\Moadian\Constants\PacketType;
+use AlirezaA2F\Moadian\Dto\InvoiceBodyDto;
+use AlirezaA2F\Moadian\Dto\InvoiceDto;
+use AlirezaA2F\Moadian\Dto\InvoiceHeaderDto;
+use AlirezaA2F\Moadian\Dto\InvoicePaymentDto;
+use AlirezaA2F\Moadian\Dto\Packet;
+use AlirezaA2F\Moadian\Moadian;
 use Datetime;
 
 require_once __DIR__ . '/vendor/autoload.php';

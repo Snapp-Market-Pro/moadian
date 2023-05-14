@@ -1,10 +1,10 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Tests;
+namespace AlirezaA2F\Moadian\Tests;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SnappMarketPro\Moadian\Services\VerhoeffService;
+use AlirezaA2F\Moadian\Services\VerhoeffService;
 
 class VerhoeffServiceTest extends TestCase
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Tests;
+namespace AlirezaA2F\Moadian\Tests;
 
 use DateTime;
 use Monolog\Test\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use SnappMarketPro\Moadian\Services\InvoiceIdService;
+use AlirezaA2F\Moadian\Services\InvoiceIdService;
 
 class InvoiceIdGenerationTest extends TestCase
 {

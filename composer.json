@@ -5,12 +5,12 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "SnappMarketPro\\Moadian\\": "src/"
+      "AlirezaA2F\\Moadian\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "SnappMarketPro\\Moadian\\Tests\\": "tests"
+      "AlirezaA2F\\Moadian\\Tests\\": "tests"
     }
   },
   "authors": [

@@ -1,6 +1,6 @@
 <?php
 
-namespace SnappMarketPro\Moadian\Dto;
+namespace AlirezaA2F\Moadian\Dto;
 
 class InvoiceHeaderDto extends PrimitiveDto
 {
