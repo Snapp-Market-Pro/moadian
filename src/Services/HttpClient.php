@@ -13,8 +13,8 @@ class HttpClient
     private Client $client;
 
     public function __construct(
-        string $baseUri,
-        private SignatureService $signatureService,
+        string                    $baseUri,
+        private SignatureService  $signatureService,
         private EncryptionService $encryptionService,
     )
     {

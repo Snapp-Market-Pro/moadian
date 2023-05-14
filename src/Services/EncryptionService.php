@@ -34,7 +34,7 @@ class EncryptionService
             self::TAG_LENGTH
         );
 
-        return base64_encode($cipherText.$tag);
+        return base64_encode($cipherText . $tag);
     }
 
     public function decrypt(string $encryptedText, string $key, string $iv, int $tagLen): string

@@ -6,7 +6,7 @@ namespace SnappMarketPro\Moadian\Dto;
 
 class InquiryByReferenceNumberDto extends PrimitiveDto
 {
-    private  $referenceNumber;
+    private $referenceNumber;
 
     public function setReferenceNumber(string $referenceNumber)
     {
