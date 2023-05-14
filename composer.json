@@ -28,7 +28,7 @@
     }
   ],
   "require": {
-    "php": "^8.0",
+    "php": "^8.1",
     "ext-openssl": "*",
     "guzzlehttp/guzzle": "^7.5",
     "ramsey/uuid": "^4.7",
