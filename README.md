@@ -1,13 +1,13 @@
-# سامانه مودیان
+# Moadian
 
-کد PHP - لاراول
+Laravel/PHP
 
-نظام پایانه‌های فروشگاهی و سامانه مودیان
+This package is used for sending API requests to moadian tax system.
 
 ## Installation
 
 ```bash
-composer require snapp-market-pro/moadian
+composer require alireza-a2f/moadian
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ use Datetime;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$username = 'شناسه یکتای مالیاتی';
+$username = 'Fiscal ID. Ex: AA56CD';
 $orgKeyId = '6a2bcd88-a871-4245-a393-2843eafe6e02';
 $privateKey = file_get_contents(__DIR__ . '/private.key');
 $publicKey = file_get_contents(__DIR__ . '/public.key');
