@@ -2,6 +2,7 @@
 
 namespace AlirezaA2F\Moadian\Api;
 
+use AlirezaA2F\Moadian\Dto\InquiryByUidDto;
 use Ramsey\Uuid\Uuid;
 use AlirezaA2F\Moadian\Constants\PacketType;
 use AlirezaA2F\Moadian\Constants\TransferConstants;
@@ -38,7 +39,6 @@ class Api
         return new Token($response['result']['data']['token'], $response['result']['data']['expiresIn']);
     }
 
-
     public function inquiryByReferenceNumber(string $referenceNumber)
     {
         $path = 'req/api/self-tsp/sync/' . PacketType::PACKET_TYPE_INQUIRY_BY_REFERENCE_NUMBER;
@@ -49,6 +49,26 @@ class Api
         $packet = new Packet(
             PacketType::PACKET_TYPE_INQUIRY_BY_REFERENCE_NUMBER,
             $inquiryByReferenceNumberDto
+        );
+
+        $packet->setRetry(false);
+        $packet->setFiscalId($this->username);
+        $headers = $this->getEssentialHeaders();
+        $headers['Authorization'] = 'Bearer ' . $this->token->getToken();
+
+        return $this->httpClient->sendPacket($path, $packet, $headers);
+    }
+
+    public function inquiryByUid(string $uid)
+    {
+        $path = 'req/api/self-tsp/sync/' . PacketType::PACKET_TYPE_INQUIRY_BY_UID;
+
+        $inquiryByUidDto = new InquiryByUidDto();
+        $inquiryByUidDto->setUid($uid);
+
+        $packet = new Packet(
+            PacketType::PACKET_TYPE_INQUIRY_BY_UID,
+            $inquiryByUidDto
         );
 
         $packet->setRetry(false);
@@ -129,39 +149,6 @@ class Api
 
         // $headers[TransferConstants::AUTHORIZATION_HEADER] = $this->token->getToken();
         $headers['Authorization'] = 'Bearer ' . $this->token->getToken();
-
-        return $this->httpClient->sendPacket($path, $packet, $headers);
-    }
-
-    private function getServerInformation(): array
-    {
-        $path = 'req/api/self-tsp/sync/GET_SERVER_INFORMATION';
-
-        $packet = new Packet(
-            PacketType::GET_SERVER_INFORMATION,
-            json_encode([
-                'time' => 1,
-                'packet' => [
-                    'uid' => null,
-                    'packetType' => PacketType::GET_SERVER_INFORMATION,
-                    'retry' => false,
-                    'data' => null,
-                    'encryptionKeyId' => '',
-                    'symmetricKey' => '',
-                    'iv' => '',
-                    'fiscalId' => '',
-                    'dataSignature' => '',
-                ],
-            ]),
-        );
-
-        $now = floor(microtime(true) * 1000);
-
-        $headers = [
-            'timestamp' => $now,
-            'uid' => $now,
-            'content-type' => 'application/json',
-        ];
 
         return $this->httpClient->sendPacket($path, $packet, $headers);
     }

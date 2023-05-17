@@ -87,6 +87,16 @@ class Moadian
         return $api->inquiryByReferenceNumber($referenceNumber);
     }
 
+    public function inquiryByUid(string $uid)
+    {
+        $signatureService = new SignatureService($this->privateKey);
+        $encryptionService = new EncryptionService($this->orgKeyId, null);
+        $httpClient = new HttpClient($this->baseURL, $signatureService, $encryptionService);
+        $api = new Api($this->username, $httpClient);
+        $api->setToken($this->token);
+        return $api->inquiryByUid($uid);
+    }
+
     public function getEconomicCodeInformation(string $taxID)
     {
         $signatureService = new SignatureService($this->privateKey);

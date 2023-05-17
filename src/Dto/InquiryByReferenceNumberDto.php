@@ -8,7 +8,7 @@ class InquiryByReferenceNumberDto extends PrimitiveDto
 {
     private $referenceNumber;
 
-    public function setReferenceNumber(string $referenceNumber)
+    public function setReferenceNumber(string $referenceNumber): void
     {
         $this->referenceNumber = [$referenceNumber];
     }
