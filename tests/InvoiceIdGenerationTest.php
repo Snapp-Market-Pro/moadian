@@ -11,11 +11,12 @@ class InvoiceIdGenerationTest extends TestCase
 {
     #[DataProvider('dataProvider')]
     public function testItCanGenerateInvoiceId(
-        string $clientId,
+        string   $clientId,
         DateTime $dateTime,
-        int $internalInvoiceId,
-        string $expected,
-    ): void {
+        int      $internalInvoiceId,
+        string   $expected,
+    ): void
+    {
         $invoiceIdService = new InvoiceIdService($clientId);
         $generatedInvoiceId = $invoiceIdService->generateInvoiceId($dateTime, $internalInvoiceId);
         $this->assertEquals($expected, $generatedInvoiceId);

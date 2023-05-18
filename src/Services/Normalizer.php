@@ -13,7 +13,8 @@ class Normalizer
         return self::arrayToValueString($flattened);
     }
 
-    private static function flattenArray(array $array): array {
+    private static function flattenArray(array $array): array
+    {
         $result = [];
 
         foreach ($array as $key => $value) {
@@ -22,7 +23,7 @@ class Normalizer
 
                 $flattened = array_combine(
                     array_map(
-                        fn ($nestedKey) => "$key.$nestedKey",
+                        fn($nestedKey) => "$key.$nestedKey",
                         array_keys($flattened)
                     ),
                     array_values($flattened)

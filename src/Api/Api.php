@@ -2,7 +2,6 @@
 
 namespace SnappMarketPro\Moadian\Api;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Ramsey\Uuid\Uuid;
 use SnappMarketPro\Moadian\Constants\PacketType;
 use SnappMarketPro\Moadian\Constants\TransferConstants;
@@ -17,66 +16,73 @@ class Api
     private ?Token $token = null;
 
     public function __construct(
-        private string $username,
+        private string     $username,
         private HttpClient $httpClient,
-    ) {
+    )
+    {
     }
 
-    /**
-     * @throws GuzzleException
-     */
     public function getToken(): Token
     {
-        $packet = new Packet(PacketType::GET_TOKEN, new GetTokenDto($this->username));
+        $path = 'req/api/self-tsp/sync/' . PacketType::GET_TOKEN;
+        $packet = new Packet(
+            PacketType::GET_TOKEN,
+            new GetTokenDto($this->username)
+        );
 
         $packet->setRetry(false);
         $packet->setFiscalId($this->username);
 
         $headers = $this->getEssentialHeaders();
 
-        $response = $this->httpClient->sendPacket('req/api/self-tsp/sync/GET_TOKEN', $packet, $headers);
+        $response = $this->httpClient->sendPacket($path, $packet, $headers);
 
         return new Token($response['result']['data']['token'], $response['result']['data']['expiresIn']);
     }
 
-
     public function inquiryByReferenceNumber(string $referenceNumber)
     {
+        $path = 'req/api/self-tsp/sync/' . PacketType::PACKET_TYPE_INQUIRY_BY_REFERENCE_NUMBER;
+
         $inquiryByReferenceNumberDto = new InquiryByReferenceNumberDto();
         $inquiryByReferenceNumberDto->setReferenceNumber($referenceNumber);
 
-        $packet = new Packet(PacketType::PACKET_TYPE_INQUIRY_BY_REFERENCE_NUMBER, $inquiryByReferenceNumberDto);
+        $packet = new Packet(
+            PacketType::PACKET_TYPE_INQUIRY_BY_REFERENCE_NUMBER,
+            $inquiryByReferenceNumberDto
+        );
 
         $packet->setRetry(false);
         $packet->setFiscalId($this->username);
         $headers = $this->getEssentialHeaders();
         $headers['Authorization'] = 'Bearer ' . $this->token->getToken();
 
-        $path = 'req/api/self-tsp/sync/' . PacketType::PACKET_TYPE_INQUIRY_BY_REFERENCE_NUMBER;
-
         return $this->httpClient->sendPacket($path, $packet, $headers);
-
     }
-    
+
     public function getEconomicCodeInformation(string $taxID)
     {
+        $path = 'req/api/self-tsp/sync/' . PacketType::GET_ECONOMIC_CODE_INFORMATION;
+
         $this->requireToken();
 
-        $packet = new Packet(PacketType::GET_ECONOMIC_CODE_INFORMATION, json_encode(["economicCode" => $taxID]));
+        $packet = new Packet(
+            PacketType::GET_ECONOMIC_CODE_INFORMATION,
+            json_encode(["economicCode" => $taxID])
+        );
 
         $packet->setRetry(false);
         $packet->setFiscalId($this->username);
         $headers = $this->getEssentialHeaders();
         $headers['Authorization'] = 'Bearer ' . $this->token->getToken();
 
-        $path = 'req/api/self-tsp/sync/' . PacketType::GET_ECONOMIC_CODE_INFORMATION;
-
         return $this->httpClient->sendPacket($path, $packet, $headers);
-
     }
 
-    public function sendInvoices(array $invoiceDtos)
+    public function sendInvoices(array $invoiceDtos): string
     {
+        $path = 'req/api/self-tsp/async/normal-enqueue';
+
         $packets = [];
 
         foreach ($invoiceDtos as $invoiceDto) {
@@ -90,27 +96,20 @@ class Api
         $headers[TransferConstants::AUTHORIZATION_HEADER] = $this->token->getToken();
 
         try {
-            $res = $this->httpClient->sendPackets(
-                'req/api/self-tsp/async/normal-enqueue',
-                $packets,
-                $headers,
-                true,
-                true,
-            );
-
+            $res = $this->httpClient->sendPackets($path, $packets, $headers, true, true);
         } catch (\Exception $e) {
         }
-
 
         return $res->getBody()->getContents();
     }
 
     /**
-     * @return array<mixed>
-     * @throws GuzzleException
+     * @return array
      */
     public function getFiscalInfo(): array
     {
+        $path = 'req/api/self-tsp/sync/' . PacketType::GET_FISCAL_INFORMATION;
+
         $this->requireToken();
 
         $packet = new Packet(PacketType::GET_FISCAL_INFORMATION, $this->username);
@@ -120,7 +119,7 @@ class Api
         // $headers[TransferConstants::AUTHORIZATION_HEADER] = $this->token->getToken();
         $headers['Authorization'] = 'Bearer ' . $this->token->getToken();
 
-        return $this->httpClient->sendPacket('req/api/self-tsp/sync/GET_FISCAL_INFORMATION', $packet, $headers);
+        return $this->httpClient->sendPacket($path, $packet, $headers);
     }
 
     public function setToken(null|Token $token): self
