@@ -27,12 +27,13 @@ class Packet
     private string|null $signatureKeyId = null;
 
     public function __construct(
-        string $packetType,
+        string                          $packetType,
         PacketDataInterface|string|null $data = null,
-    ) {
+    )
+    {
         $this->packetType = $packetType;
         $this->data = $data;
-        $this->uid = (string) Uuid::uuid4();
+        $this->uid = (string)Uuid::uuid4();
     }
 
     public function getUid(): string
@@ -158,9 +159,5 @@ class Packet
             'fiscalId' => $this->fiscalId,
             'dataSignature' => $this->dataSignature,
         ];
-
-        if ($this->signatureKeyId) {
-            $array['signatureKeyId'] = $this->signatureKeyId;
-        }
     }
 }
