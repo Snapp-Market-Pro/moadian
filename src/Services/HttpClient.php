@@ -13,9 +13,9 @@ class HttpClient
     private Client $client;
 
     public function __construct(
-        string $baseUri,
-        private SignatureService $signatureService,
-        private EncryptionService $encryptionService,
+        string                             $baseUri,
+        private readonly SignatureService  $signatureService,
+        private readonly EncryptionService $encryptionService,
     )
     {
         $this->client = new Client([
@@ -24,6 +24,9 @@ class HttpClient
         ]);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function sendPacket(string $path, Packet $packet, array $headers)
     {
         $cloneHeader = $headers;
@@ -47,8 +50,15 @@ class HttpClient
     /**
      * @param Packet[] $packets
      * @param array<string, string> $headers
+     * @throws GuzzleException
      */
-    public function sendPackets(string $path, array $packets, array $headers, bool $encrypt = false, bool $sign = false)
+    public function sendPackets(
+        string $path,
+        array  $packets,
+        array  $headers,
+        bool   $encrypt = false,
+        bool   $sign = false
+    ): ResponseInterface
     {
         $headers = $this->fillEssentialHeaders($headers);
 
@@ -86,7 +96,6 @@ class HttpClient
             'signatureKeyId' => null,
         ];
 
-
         return $this->post($path, json_encode($content), [...$headers, 'Content-Type' => 'application/json']);
     }
 
@@ -103,6 +112,7 @@ class HttpClient
     /**
      * @param Packet[] $packets
      * @return Packet[]
+     * @throws \Exception
      */
     private function encryptPackets(array $packets): array
     {

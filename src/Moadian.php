@@ -3,6 +3,7 @@
 namespace SnappMarketPro\Moadian;
 
 use DateTime;
+use GuzzleHttp\Exception\GuzzleException;
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use SnappMarketPro\Moadian\Api\Api;
@@ -18,7 +19,7 @@ use SnappMarketPro\Moadian\Services\SignatureService;
 
 class Moadian
 {
-    private $token;
+    private Token $token;
 
     public function __construct(
         protected readonly string $publicKey,
@@ -37,7 +38,10 @@ class Moadian
         return $this;
     }
 
-    public function sendInvoice(Packet $packet)
+    /**
+     * @throws GuzzleException
+     */
+    public function sendInvoice(Packet $packet): \Psr\Http\Message\ResponseInterface
     {
         if (!$this->token) {
             throw new InvalidArgumentException("Set token before sending invoice!");
@@ -59,7 +63,7 @@ class Moadian
         return $httpClient->sendPackets($path, [$packet], $headers, true, true);
     }
 
-    public function getToken()
+    public function getToken(): Token
     {
         $signatureService = new SignatureService($this->privateKey);
 
@@ -109,7 +113,7 @@ class Moadian
         return $api->getEconomicCodeInformation($taxID);
     }
 
-    public function getFiscalInfo()
+    public function getFiscalInfo(): array
     {
         $signatureService = new SignatureService($this->privateKey);
         $encryptionService = new EncryptionService($this->orgKeyId, null);

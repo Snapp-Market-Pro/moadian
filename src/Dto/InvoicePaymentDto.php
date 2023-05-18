@@ -4,7 +4,6 @@ namespace SnappMarketPro\Moadian\Dto;
 
 class InvoicePaymentDto extends PrimitiveDto
 {
-
     /**
      * Iin number
      */
@@ -118,7 +117,6 @@ class InvoicePaymentDto extends PrimitiveDto
         $this->pdt = $pdt;
         return $this;
     }
-
 
     public function getPmt(): ?int
     {
