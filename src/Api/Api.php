@@ -8,6 +8,7 @@ use SnappMarketPro\Moadian\Constants\PacketType;
 use SnappMarketPro\Moadian\Constants\TransferConstants;
 use SnappMarketPro\Moadian\Dto\GetTokenDto;
 use SnappMarketPro\Moadian\Dto\InquiryByReferenceNumberDto;
+use SnappMarketPro\Moadian\Dto\InquiryByUidDto;
 use SnappMarketPro\Moadian\Dto\Packet;
 use SnappMarketPro\Moadian\Dto\Token;
 use SnappMarketPro\Moadian\Services\HttpClient;
@@ -56,6 +57,26 @@ class Api
 
         return $this->httpClient->sendPacket($path, $packet, $headers);
 
+    }
+
+    public function inquiryByUid(string $uid)
+    {
+        $path = 'req/api/self-tsp/sync/' . PacketType::PACKET_TYPE_INQUIRY_BY_UID;
+
+        $inquiryByUidDto = new InquiryByUidDto();
+        $inquiryByUidDto->setUid($uid);
+
+        $packet = new Packet(
+            PacketType::PACKET_TYPE_INQUIRY_BY_UID,
+            $uid
+        );
+
+        $packet->setRetry(false);
+        $packet->setFiscalId($this->username);
+        $headers = $this->getEssentialHeaders();
+        $headers['Authorization'] = 'Bearer ' . $this->token->getToken();
+
+        return $this->httpClient->sendPacket($path, $packet, $headers);
     }
     
     public function getEconomicCodeInformation(string $taxID)
