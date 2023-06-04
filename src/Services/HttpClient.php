@@ -4,9 +4,9 @@ namespace SnappMarketPro\Moadian\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 use SnappMarketPro\Moadian\Constants\TransferConstants;
 use SnappMarketPro\Moadian\Dto\Packet;
-use Psr\Http\Message\ResponseInterface;
 
 class HttpClient
 {
@@ -16,8 +16,7 @@ class HttpClient
         string                    $baseUri,
         private SignatureService  $signatureService,
         private EncryptionService $encryptionService,
-    )
-    {
+    ) {
         $this->client = new Client([
             'base_uri' => $baseUri,
             'headers' => ['Content-Type' => 'application/json'],
@@ -60,8 +59,7 @@ class HttpClient
         array  $headers,
         bool   $encrypt = false,
         bool   $sign = false
-    ): ResponseInterface
-    {
+    ): ResponseInterface {
         $headers = $this->fillEssentialHeaders($headers);
 
         // TODO: Wrong value for indati2m and indati2m, taxId
@@ -93,7 +91,7 @@ class HttpClient
         }*/
 
         $content = [
-            'packets' => array_map(fn($p) => $p->toArray(), $packets),
+            'packets' => array_map(fn ($p) => $p->toArray(), $packets),
             'signature' => $signature,
             'signatureKeyId' => null,
         ];
@@ -108,7 +106,7 @@ class HttpClient
 
         $packet->setDataSignature($signature);
         // TODO: Not sure?
-//        $packet->setSignatureKeyId($this->signatureService->getKeyId());
+        //        $packet->setSignatureKeyId($this->signatureService->getKeyId());
     }
 
     /**

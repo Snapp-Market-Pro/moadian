@@ -29,7 +29,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 $username = 'شناسه یکتای مالیاتی';
 $orgKeyId = '6a2bcd88-a871-4245-a393-2843eafe6e02';
 $privateKey = file_get_contents(__DIR__ . '/private.key');
-$publicKey = file_get_contents(__DIR__ . '/public.key');
+$publicKey = file_get_contents(__DIR__ . '/public.key'); // this is the public key of tax org, not you!
 
 $moadian = new Moadian(
     $publicKey,

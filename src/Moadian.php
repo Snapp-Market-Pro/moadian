@@ -25,8 +25,7 @@ class Moadian
         protected string $orgKeyId,
         protected string $username,
         protected string $baseURL = 'https://tp.tax.gov.ir',
-    )
-    {
+    ) {
     }
 
     public function setToken(Token $token): self
@@ -42,7 +41,7 @@ class Moadian
     public function sendInvoice(Packet $packet): ResponseInterface
     {
         if (!$this->token) {
-            throw new InvalidArgumentException("Set token before sending invoice!");
+            throw new InvalidArgumentException('Set token before sending invoice!');
         }
 
         $headers = [
@@ -51,7 +50,8 @@ class Moadian
             'timestamp' => time() * 1000,
         ];
 
-        $httpClient = new HttpClient($this->baseURL,
+        $httpClient = new HttpClient(
+            $this->baseURL,
             new SignatureService($this->privateKey),
             new EncryptionService($this->publicKey, $this->orgKeyId)
         );

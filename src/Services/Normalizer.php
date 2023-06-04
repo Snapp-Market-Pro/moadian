@@ -23,7 +23,7 @@ class Normalizer
 
                 $flattened = array_combine(
                     array_map(
-                        fn($nestedKey) => "$key.$nestedKey",
+                        fn ($nestedKey) => "$key.$nestedKey",
                         array_keys($flattened)
                     ),
                     array_values($flattened)
@@ -57,4 +57,3 @@ class Normalizer
         return implode('#', $textValues);
     }
 }
-

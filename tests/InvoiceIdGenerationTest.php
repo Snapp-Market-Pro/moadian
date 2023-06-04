@@ -15,8 +15,7 @@ class InvoiceIdGenerationTest extends TestCase
         DateTime $dateTime,
         int      $internalInvoiceId,
         string   $expected,
-    ): void
-    {
+    ): void {
         $invoiceIdService = new InvoiceIdService($clientId);
         $generatedInvoiceId = $invoiceIdService->generateInvoiceId($dateTime, $internalInvoiceId);
         $this->assertEquals($expected, $generatedInvoiceId);

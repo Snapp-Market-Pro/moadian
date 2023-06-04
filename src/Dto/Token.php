@@ -7,8 +7,7 @@ class Token
     public function __construct(
         private string $token,
         private int    $expiresAt,
-    )
-    {
+    ) {
     }
 
     public function getToken(): string

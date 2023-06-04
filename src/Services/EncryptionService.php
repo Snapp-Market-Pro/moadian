@@ -30,7 +30,7 @@ class EncryptionService
             OPENSSL_RAW_DATA,
             $iv,
             $tag,
-            "",
+            '',
             self::TAG_LENGTH
         );
 

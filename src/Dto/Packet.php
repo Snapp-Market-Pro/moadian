@@ -29,8 +29,7 @@ class Packet
     public function __construct(
         string                          $packetType,
         PacketDataInterface|string|null $data = null,
-    )
-    {
+    ) {
         $this->packetType = $packetType;
         $this->data = $data;
         $this->uid = (string)Uuid::uuid4();

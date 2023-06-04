@@ -19,8 +19,7 @@ class Api
     public function __construct(
         private string     $username,
         private HttpClient $httpClient,
-    )
-    {
+    ) {
     }
 
     /**
@@ -83,7 +82,7 @@ class Api
 
         $packet = new Packet(
             PacketType::GET_ECONOMIC_CODE_INFORMATION,
-            json_encode(["economicCode" => $taxID])
+            json_encode(['economicCode' => $taxID])
         );
 
         $packet->setRetry(false);
