@@ -5,11 +5,9 @@ namespace SnappMarketPro\Moadian;
 use DateTime;
 use GuzzleHttp\Exception\GuzzleException;
 use InvalidArgumentException;
+use Psr\Http\Message\ResponseInterface;
 use Ramsey\Uuid\Uuid;
 use SnappMarketPro\Moadian\Api\Api;
-use SnappMarketPro\Moadian\Constants\PacketType;
-use SnappMarketPro\Moadian\Constants\TransferConstants;
-use SnappMarketPro\Moadian\Dto\InquiryByReferenceNumberDto;
 use SnappMarketPro\Moadian\Dto\Packet;
 use SnappMarketPro\Moadian\Dto\Token;
 use SnappMarketPro\Moadian\Services\EncryptionService;
@@ -22,11 +20,11 @@ class Moadian
     private Token $token;
 
     public function __construct(
-        protected readonly string $publicKey,
-        protected readonly string $privateKey,
-        protected readonly string $orgKeyId,
-        protected readonly string $username,
-        protected readonly string $baseURL = 'https://tp.tax.gov.ir',
+        protected string $publicKey,
+        protected string $privateKey,
+        protected string $orgKeyId,
+        protected string $username,
+        protected string $baseURL = 'https://tp.tax.gov.ir',
     )
     {
     }
@@ -41,7 +39,7 @@ class Moadian
     /**
      * @throws GuzzleException
      */
-    public function sendInvoice(Packet $packet): \Psr\Http\Message\ResponseInterface
+    public function sendInvoice(Packet $packet): ResponseInterface
     {
         if (!$this->token) {
             throw new InvalidArgumentException("Set token before sending invoice!");
@@ -63,6 +61,9 @@ class Moadian
         return $httpClient->sendPackets($path, [$packet], $headers, true, true);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function getToken(): Token
     {
         $signatureService = new SignatureService($this->privateKey);
@@ -76,14 +77,11 @@ class Moadian
         return $api->getToken();
     }
 
-    public function generateTaxId(DateTime $invoiceCreatedAt, $internalInvoiceId): string
-    {
-        $invoiceIdService = new InvoiceIdService($this->username);
-
-        return $invoiceIdService->generateInvoiceId($invoiceCreatedAt, $internalInvoiceId);
-    }
-
-    public function inquiryByReferenceNumber(string $referenceNumber)
+    /**
+     * @return array<string, mixed>
+     * @throws GuzzleException
+     */
+    public function inquiryByReferenceNumber(string $referenceNumber): array
     {
         $signatureService = new SignatureService($this->privateKey);
         $encryptionService = new EncryptionService($this->orgKeyId, null);
@@ -93,7 +91,11 @@ class Moadian
         return $api->inquiryByReferenceNumber($referenceNumber);
     }
 
-    public function getEconomicCodeInformation(string $taxID)
+    /**
+     * @return array<string, mixed>
+     * @throws GuzzleException
+     */
+    public function getEconomicCodeInformation(string $taxID): array
     {
         $signatureService = new SignatureService($this->privateKey);
         $encryptionService = new EncryptionService($this->orgKeyId, null);
@@ -103,6 +105,10 @@ class Moadian
         return $api->getEconomicCodeInformation($taxID);
     }
 
+    /**
+     * @return array<string, mixed>
+     * @throws GuzzleException
+     */
     public function getFiscalInfo(): array
     {
         $signatureService = new SignatureService($this->privateKey);
@@ -111,5 +117,12 @@ class Moadian
         $api = new Api($this->username, $httpClient);
         $api->setToken($this->token);
         return $api->getFiscalInfo();
+    }
+
+    public function generateTaxId(DateTime $invoiceCreatedAt, $internalInvoiceId): string
+    {
+        $invoiceIdService = new InvoiceIdService($this->username);
+
+        return $invoiceIdService->generateInvoiceId($invoiceCreatedAt, $internalInvoiceId);
     }
 }

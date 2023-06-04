@@ -2,6 +2,7 @@
 
 namespace SnappMarketPro\Moadian\Api;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Ramsey\Uuid\Uuid;
 use SnappMarketPro\Moadian\Constants\PacketType;
 use SnappMarketPro\Moadian\Constants\TransferConstants;
@@ -22,9 +23,13 @@ class Api
     {
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function getToken(): Token
     {
         $path = 'req/api/self-tsp/sync/' . PacketType::GET_TOKEN;
+
         $packet = new Packet(
             PacketType::GET_TOKEN,
             new GetTokenDto($this->username)
@@ -40,9 +45,15 @@ class Api
         return new Token($response['result']['data']['token'], $response['result']['data']['expiresIn']);
     }
 
-    public function inquiryByReferenceNumber(string $referenceNumber)
+    /**
+     * @return array<string, mixed>
+     * @throws GuzzleException
+     */
+    public function inquiryByReferenceNumber(string $referenceNumber): array
     {
         $path = 'req/api/self-tsp/sync/' . PacketType::PACKET_TYPE_INQUIRY_BY_REFERENCE_NUMBER;
+
+        $this->requireToken();
 
         $inquiryByReferenceNumberDto = new InquiryByReferenceNumberDto();
         $inquiryByReferenceNumberDto->setReferenceNumber($referenceNumber);
@@ -60,7 +71,11 @@ class Api
         return $this->httpClient->sendPacket($path, $packet, $headers);
     }
 
-    public function getEconomicCodeInformation(string $taxID)
+    /**
+     * @return array<string, mixed>
+     * @throws GuzzleException
+     */
+    public function getEconomicCodeInformation(string $taxID): array
     {
         $path = 'req/api/self-tsp/sync/' . PacketType::GET_ECONOMIC_CODE_INFORMATION;
 
@@ -79,9 +94,14 @@ class Api
         return $this->httpClient->sendPacket($path, $packet, $headers);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function sendInvoices(array $invoiceDtos): string
     {
         $path = 'req/api/self-tsp/async/normal-enqueue';
+
+        $this->requireToken();
 
         $packets = [];
 
@@ -95,16 +115,14 @@ class Api
 
         $headers[TransferConstants::AUTHORIZATION_HEADER] = $this->token->getToken();
 
-        try {
-            $res = $this->httpClient->sendPackets($path, $packets, $headers, true, true);
-        } catch (\Exception $e) {
-        }
+        $res = $this->httpClient->sendPackets($path, $packets, $headers, true, true);
 
         return $res->getBody()->getContents();
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
+     * @throws GuzzleException
      */
     public function getFiscalInfo(): array
     {
@@ -139,6 +157,9 @@ class Api
         ];
     }
 
+    /**
+     * @throws GuzzleException
+     */
     private function requireToken(): void
     {
         if ($this->token === null || $this->token->isExpired()) {

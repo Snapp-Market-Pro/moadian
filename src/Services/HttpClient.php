@@ -13,9 +13,9 @@ class HttpClient
     private Client $client;
 
     public function __construct(
-        string                             $baseUri,
-        private readonly SignatureService  $signatureService,
-        private readonly EncryptionService $encryptionService,
+        string                    $baseUri,
+        private SignatureService  $signatureService,
+        private EncryptionService $encryptionService,
     )
     {
         $this->client = new Client([
@@ -25,9 +25,11 @@ class HttpClient
     }
 
     /**
+     * @param array<string, mixed> $headers
+     * @return array<string, mixed>
      * @throws GuzzleException
      */
-    public function sendPacket(string $path, Packet $packet, array $headers)
+    public function sendPacket(string $path, Packet $packet, array $headers): array
     {
         $cloneHeader = $headers;
 
