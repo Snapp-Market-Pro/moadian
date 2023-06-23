@@ -13,7 +13,8 @@ class Normalizer
         return self::arrayToValueString($flattened);
     }
 
-    private static function flattenArray(array $array): array {
+    private static function flattenArray(array $array): array
+    {
         $result = [];
 
         foreach ($array as $key => $value) {
@@ -56,4 +57,3 @@ class Normalizer
         return implode('#', $textValues);
     }
 }
-

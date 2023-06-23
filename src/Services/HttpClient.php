@@ -4,27 +4,31 @@ namespace SnappMarketPro\Moadian\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 use SnappMarketPro\Moadian\Constants\TransferConstants;
 use SnappMarketPro\Moadian\Dto\Packet;
-use Psr\Http\Message\ResponseInterface;
 
 class HttpClient
 {
     private Client $client;
 
     public function __construct(
-        string $baseUri,
-        private SignatureService $signatureService,
+        string                    $baseUri,
+        private SignatureService  $signatureService,
         private EncryptionService $encryptionService,
-    )
-    {
+    ) {
         $this->client = new Client([
             'base_uri' => $baseUri,
             'headers' => ['Content-Type' => 'application/json'],
         ]);
     }
 
-    public function sendPacket(string $path, Packet $packet, array $headers)
+    /**
+     * @param array<string, mixed> $headers
+     * @return array<string, mixed>
+     * @throws GuzzleException
+     */
+    public function sendPacket(string $path, Packet $packet, array $headers): array
     {
         $cloneHeader = $headers;
 
@@ -47,9 +51,15 @@ class HttpClient
     /**
      * @param Packet[] $packets
      * @param array<string, string> $headers
+     * @throws GuzzleException
      */
-    public function sendPackets(string $path, array $packets, array $headers, bool $encrypt = false, bool $sign = false)
-    {
+    public function sendPackets(
+        string $path,
+        array  $packets,
+        array  $headers,
+        bool   $encrypt = false,
+        bool   $sign = false
+    ): ResponseInterface {
         $headers = $this->fillEssentialHeaders($headers);
 
         // TODO: Wrong value for indati2m and indati2m, taxId
@@ -81,11 +91,10 @@ class HttpClient
         }*/
 
         $content = [
-            'packets' => array_map(fn($p) => $p->toArray(), $packets),
+            'packets' => array_map(fn ($p) => $p->toArray(), $packets),
             'signature' => $signature,
             'signatureKeyId' => null,
         ];
-
 
         return $this->post($path, json_encode($content), [...$headers, 'Content-Type' => 'application/json']);
     }
@@ -97,12 +106,13 @@ class HttpClient
 
         $packet->setDataSignature($signature);
         // TODO: Not sure?
-//        $packet->setSignatureKeyId($this->signatureService->getKeyId());
+        //        $packet->setSignatureKeyId($this->signatureService->getKeyId());
     }
 
     /**
      * @param Packet[] $packets
      * @return Packet[]
+     * @throws \Exception
      */
     private function encryptPackets(array $packets): array
     {

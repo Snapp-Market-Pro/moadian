@@ -60,7 +60,7 @@ class NormalizerTest extends TestCase
             'KA' => [
                 [
                     'B' => 2,
-                    'A' => 1
+                    'A' => 1,
                 ],
                 [
                     'A' => 3,

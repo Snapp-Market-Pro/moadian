@@ -35,8 +35,9 @@ class VerhoeffService
         $c = 0;
         $len = strlen($number);
 
-        for ($i = 0; $i < $len; ++$i)
+        for ($i = 0; $i < $len; ++$i) {
             $c = self::MULTIPLICATION_TABLE[$c][self::PERMUTATION_TABLE[(($i + 1) % 8)][$number[$len - $i - 1] - '0']];
+        }
 
         return self::INVERSE_TABLE[$c];
     }
@@ -46,8 +47,9 @@ class VerhoeffService
         $c = 0;
         $len = strlen($number);
 
-        for ($i = 0; $i < $len; ++$i)
+        for ($i = 0; $i < $len; ++$i) {
             $c = self::MULTIPLICATION_TABLE[$c][self::PERMUTATION_TABLE[($i % 8)][$number[$len - $i - 1] - '0']];
+        }
 
         return $c == 0;
     }

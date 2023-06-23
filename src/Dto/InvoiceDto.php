@@ -67,8 +67,8 @@ class InvoiceDto implements PacketDataInterface
     {
         return [
             'header' => $this->getHeader()->toArray(),
-            'body' => array_map(fn(InvoiceBodyDto $body) => $body->toArray(), $this->getBody()),
-            'payments' => array_map(fn(InvoicePaymentDto $payment) => $payment->toArray(), $this->getPayments()),
+            'body' => array_map(fn (InvoiceBodyDto $body) => $body->toArray(), $this->getBody()),
+            'payments' => array_map(fn (InvoicePaymentDto $payment) => $payment->toArray(), $this->getPayments()),
             'extension' => null
         ];
     }
