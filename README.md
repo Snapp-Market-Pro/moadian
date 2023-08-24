@@ -4,6 +4,9 @@
 
 نظام پایانه‌های فروشگاهی و سامانه مودیان
 
+## Disclaimer
+This software is provided as is without any warranty whatsoever, including accuracy and comprehensiveness. We are not associated with Moadian Maliati Organization and we have worked with the API just as simple clients so we are limited in the amount of support and help we can give regarding the functionality of the API. We have however personally used this package and have successfully submitted tens of thousands of invoices.
+
 ## Installation
 
 ```bash
@@ -11,6 +14,10 @@ composer require snapp-market-pro/moadian
 ```
 
 ## Usage
+
+1. Generate a key pair in the admin panel and use the private key as the private key parameter required in `Moadian` class constructor.
+2. Get servers public key from the `INFORMATION_SERVER_GET` API endpoint and use it as the public key parameter in `Moadian` class. (see [this issue](https://github.com/Snapp-Market-Pro/moadian/issues/20#issuecomment-1637061790) for sample CURL request)
+3. Sample Usage:
 
 ```php
 <?php
