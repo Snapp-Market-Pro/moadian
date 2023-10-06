@@ -2,7 +2,7 @@
 
 namespace SnappMarketPro\Moadian\Dto;
 
-class GetTokenDto extends PrimitiveDto implements PacketDataInterface
+class GetTokenDto extends PrimitiveDto
 {
     public string $username;
 
