@@ -27,7 +27,7 @@ class Packet
     private string|null $signatureKeyId = null;
 
     public function __construct(
-        string                          $packetType,
+        string $packetType,
         PacketDataInterface|string|null $data = null,
     ) {
         $this->packetType = $packetType;

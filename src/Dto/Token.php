@@ -6,7 +6,7 @@ class Token
 {
     public function __construct(
         private string $token,
-        private int    $expiresAt,
+        private int $expiresAt,
     ) {
     }
 

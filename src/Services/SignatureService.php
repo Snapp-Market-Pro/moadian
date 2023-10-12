@@ -6,7 +6,7 @@ use RuntimeException;
 
 class SignatureService
 {
-    public function __construct(private string $privateKey, private string|null $keyId = null)
+    public function __construct(private string $privateKey)
     {
     }
 
@@ -19,10 +19,5 @@ class SignatureService
         } else {
             throw new RuntimeException('Failed to sign the text with message ' . openssl_error_string());
         }
-    }
-
-    public function getKeyId(): string|null
-    {
-        return $this->keyId;
     }
 }
