@@ -157,7 +157,7 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * total VAT of payment
      */
-    private ?string $tvop;
+    private ?int $tvop;
 
     /**
      * Cottage number of customs declaration
@@ -566,12 +566,12 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this;
     }
 
-    public function getTvop(): ?string
+    public function getTvop(): ?int
     {
         return $this->tvop;
     }
 
-    public function setTvop(?string $tvop): self
+    public function setTvop(?int $tvop): self
     {
         $this->tvop = $tvop;
         return $this;

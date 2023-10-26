@@ -127,7 +127,7 @@ class InvoiceBodyDto extends PrimitiveDto
     /**
      * vat of payment
      */
-    private ?string $vop;
+    private ?int $vop;
 
     /**
      * buyer register number
@@ -419,12 +419,12 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getVop(): ?string
+    public function getVop(): ?int
     {
         return $this->vop;
     }
 
-    public function setVop(?string $vop): self
+    public function setVop(?int $vop): self
     {
         $this->vop = $vop;
         return $this;
