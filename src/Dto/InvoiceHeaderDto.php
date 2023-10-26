@@ -160,6 +160,78 @@ class InvoiceHeaderDto extends PrimitiveDto
     private ?string $tvop;
 
     /**
+     * Cottage number of customs declaration
+     */
+    private ?string $cdcn;
+
+    /**
+     * Total net weight
+     */
+    private ?float $tonw;
+
+    /**
+     * Total Riyal value of goods
+     */
+    private ?int $torv;
+    /**
+     * Total Currency value of goods
+     */
+
+    private ?int $tocv;
+
+    public function getTorv(): ?int
+    {
+        return $this->torv;
+    }
+
+    public function setTorv(?int $torv): void
+    {
+        $this->torv = $torv;
+    }
+
+    public function getTocv(): ?int
+    {
+        return $this->tocv;
+    }
+
+    public function setTocv(?int $tocv): void
+    {
+        $this->tocv = $tocv;
+    }
+
+    public function getTonw(): ?float
+    {
+        return $this->tonw;
+    }
+
+    public function setTonw(?float $tonw): void
+    {
+        $this->tonw = $tonw;
+    }
+
+    public function getCdcn(): ?string
+    {
+        return $this->cdcn;
+    }
+
+    public function setCdcn(?string $cdcn): void
+    {
+        $this->cdcn = $cdcn;
+    }
+
+    public function getCdcd(): ?string
+    {
+        return $this->cdcd;
+    }
+
+    public function setCdcd(?string $cdcd): void
+    {
+        $this->cdcd = $cdcd;
+    }
+
+    private ?string $cdcd;
+
+    /**
      * tax17
      */
     private int $tax17;

@@ -139,6 +139,22 @@ class InvoiceBodyDto extends PrimitiveDto
      */
     private int $tsstam;
 
+    /**
+     * net weight
+     */
+    private ?float $nw;
+
+    /**
+     * Riyal value of goods
+     */
+    private ?int $ssrv;
+
+    /**
+     * Currency value of goods
+     */
+    private ?float $sscv;
+
+
     public function getSstid(): ?string
     {
         return $this->sstid;
@@ -435,4 +451,36 @@ class InvoiceBodyDto extends PrimitiveDto
         $this->tsstam = $tsstam;
         return $this;
     }
+
+    public function getNw(): ?float
+    {
+        return $this->nw;
+    }
+
+    public function setNw(?float $nw): void
+    {
+        $this->nw = $nw;
+    }
+
+    public function getSsrv(): ?int
+    {
+        return $this->ssrv;
+    }
+
+    public function setSsrv(?int $ssrv): void
+    {
+        $this->ssrv = $ssrv;
+    }
+
+    public function getSscv(): ?float
+    {
+        return $this->sscv;
+    }
+
+    public function setSscv(?float $sscv): void
+    {
+        $this->sscv = $sscv;
+    }
+
+
 }
