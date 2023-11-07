@@ -157,7 +157,79 @@ class InvoiceHeaderDto extends PrimitiveDto
     /**
      * total VAT of payment
      */
-    private ?string $tvop;
+    private ?int $tvop;
+
+    /**
+     * Cottage number of customs declaration
+     */
+    private ?string $cdcn;
+
+    /**
+     * Total net weight
+     */
+    private ?float $tonw;
+
+    /**
+     * Total Riyal value of goods
+     */
+    private ?int $torv;
+    /**
+     * Total Currency value of goods
+     */
+
+    private ?int $tocv;
+
+    public function getTorv(): ?int
+    {
+        return $this->torv;
+    }
+
+    public function setTorv(?int $torv): void
+    {
+        $this->torv = $torv;
+    }
+
+    public function getTocv(): ?int
+    {
+        return $this->tocv;
+    }
+
+    public function setTocv(?int $tocv): void
+    {
+        $this->tocv = $tocv;
+    }
+
+    public function getTonw(): ?float
+    {
+        return $this->tonw;
+    }
+
+    public function setTonw(?float $tonw): void
+    {
+        $this->tonw = $tonw;
+    }
+
+    public function getCdcn(): ?string
+    {
+        return $this->cdcn;
+    }
+
+    public function setCdcn(?string $cdcn): void
+    {
+        $this->cdcn = $cdcn;
+    }
+
+    public function getCdcd(): ?string
+    {
+        return $this->cdcd;
+    }
+
+    public function setCdcd(?string $cdcd): void
+    {
+        $this->cdcd = $cdcd;
+    }
+
+    private ?string $cdcd;
 
     /**
      * tax17
@@ -494,12 +566,12 @@ class InvoiceHeaderDto extends PrimitiveDto
         return $this;
     }
 
-    public function getTvop(): ?string
+    public function getTvop(): ?int
     {
         return $this->tvop;
     }
 
-    public function setTvop(?string $tvop): self
+    public function setTvop(?int $tvop): self
     {
         $this->tvop = $tvop;
         return $this;
