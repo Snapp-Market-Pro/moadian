@@ -17,7 +17,7 @@ class InvoiceBodyDto extends PrimitiveDto
     /**
      * amount
      */
-    private int $am;
+    private float $am;
 
     /**
      * measurement unit
@@ -177,12 +177,12 @@ class InvoiceBodyDto extends PrimitiveDto
         return $this;
     }
 
-    public function getAm(): int
+    public function getAm(): float
     {
         return $this->am;
     }
 
-    public function setAm(int $am): self
+    public function setAm(float $am): self
     {
         $this->am = $am;
         return $this;
