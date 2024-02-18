@@ -5,7 +5,7 @@ namespace SnappMarketPro\Moadian\Dto;
 class InquiryByReferenceNumberDto extends PrimitiveDto
 {
     /** @var string[] */
-    private array $referenceNumber;
+    public array $referenceNumber;
 
     public function addReferenceNumber(string $referenceNumber): self
     {
